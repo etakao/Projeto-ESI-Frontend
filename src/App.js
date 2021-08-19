@@ -1,8 +1,10 @@
 import './styles/global.scss';
 
+import Forms from './pages/Forms';
+
 function App() {
   return (
-    <h1>Projeto de ESI</h1>
+    <Forms/>
   );
 }
 
