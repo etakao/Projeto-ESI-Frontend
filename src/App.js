@@ -1,3 +1,4 @@
+import "antd/dist/antd.css";
 import './styles/global.scss';
 
 import Forms from './pages/Forms';
