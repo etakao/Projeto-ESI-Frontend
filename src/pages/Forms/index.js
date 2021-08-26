@@ -7,7 +7,8 @@ const { Option } = Select;
 
 
 export default function Forms() {
-  
+  const revalue = false;
+
   return (
     <div className="container">
       <div id="header">
@@ -123,29 +124,26 @@ export default function Forms() {
           <span className="question">Você tem algo a mais a declarar para a CCP - PPgSI?</span>
           <textarea rows="5" cols="50"></textarea>
 
-          <div className="revalue" >
-            <p>Apenas para reapresentação de relatórios que receberam parecer “insatisfatório”
-              pela CCP-PPgSI a fim de obter uma reavaliação.</p>
-              <br/>
-            <p>A prerrogativa de entregar uma nova versão do relatório é oferecida ao
-              orientando assumindo situações em que, por exemplo, ele precise ou queira 
-              esclarecer ou incluir informações que sejam relativas exclusivamente ao período
-              avaliado neste relatório (ou seja, apenas o semestre anterior já encerrado), tais
-              como:</p>
-              <br/>
-            <p>-Explicar melhor alguma atividade realizada no período em questão que não foi 
-              bem explicada na primeira versão do relatório e, portanto, não avaliada 
-              apropriadamente de acordo com a visão do orientando e do orientador.</p>
-              <br/>
-            <p>- Incluir alguma atividade realizada no período em questão, mas que o orientando
-              havia esquecido de incluir e que pode ter possivelmente prejudicado a avaliação
-              de seu desempenho.</p>
-              <br/>
-            <p>- Argumentar os motivos pelos quais ele considera que apesar de suas atividades 
-              no período em questão terem sido exatamente aquelas (de forma que nada novo 
-              precisa ser adicionado), ainda assim orientando e orientador consideram que o 
-              desempenho não deveria ter sido considerado “insatisfatório”.</p>
-          </div>
+          {revalue === true &&
+            <div className="revalue" >
+              <p>Apenas para reapresentação de relatórios que receberam parecer “insatisfatório”
+                pela CCP-PPgSI a fim de obter uma reavaliação.</p>
+              <p>A prerrogativa de entregar uma nova versão do relatório é oferecida ao
+                orientando assumindo situações em que, por exemplo, ele precise ou queira 
+                esclarecer ou incluir informações que sejam relativas exclusivamente ao período
+                avaliado neste relatório (ou seja, apenas o semestre anterior já encerrado), tais
+                como:</p>
+              <p>-Explicar melhor alguma atividade realizada no período em questão que não foi 
+                bem explicada na primeira versão do relatório e, portanto, não avaliada 
+                apropriadamente de acordo com a visão do orientando e do orientador.</p>
+              <p>- Incluir alguma atividade realizada no período em questão, mas que o orientando
+                havia esquecido de incluir e que pode ter possivelmente prejudicado a avaliação
+                de seu desempenho.</p>
+              <p>- Argumentar os motivos pelos quais ele considera que apesar de suas atividades 
+                no período em questão terem sido exatamente aquelas (de forma que nada novo 
+                precisa ser adicionado), ainda assim orientando e orientador consideram que o 
+                desempenho não deveria ter sido considerado “insatisfatório”.</p>
+          </div>}
           <button>Cadastrar</button>
         </form>
       </div>
