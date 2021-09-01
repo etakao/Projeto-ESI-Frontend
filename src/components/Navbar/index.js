@@ -1,43 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-import { Drawer } from 'antd';
-import { FiHome, FiLogOut, FiMenu, FiUsers } from 'react-icons/fi';
+import { FiLogOut, FiUser } from 'react-icons/fi';
 
 import './styles.scss';
 
-function Navbar() {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+export function Navbar({ setNavbarHeight }) {
+  const divRef = useRef(null);
+
+  useEffect(() => {
+    setNavbarHeight(divRef.current.clientHeight);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div className="navbar-container">
-      <FiMenu onClick={() => setIsSidebarVisible(true)} />
+    <div className="navbar-container" ref={divRef}>
       <h2>PPgSI | Painel do orientador</h2>
-
-      <Drawer
-        title="PPgSI"
-        placement="left"
-        closable={true}
-        onClose={() => setIsSidebarVisible(false)}
-        visible={isSidebarVisible}
-        className="sidebar-container"
-      >
-        <h3>Painel do orientador</h3>
-        <hr />
-
-        <ul>
-          <li>
-            <FiHome /> Início
-          </li>
-          <li>
-            <FiUsers /> Tabela de alunos
-          </li>
-          <li>
-            <FiLogOut /> Sair
-          </li>
-        </ul>
-      </Drawer>
+      <div className="navbar-menu">
+        <h3><FiUser /> Usuário</h3>
+        <FiLogOut className="log-out" title="Sair" />
+      </div>
     </div>
   );
 }
-
-export default Navbar;

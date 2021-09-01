@@ -6,7 +6,7 @@ export function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/dashboard/panel" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard} />
       </Switch>
     </BrowserRouter>
   );
