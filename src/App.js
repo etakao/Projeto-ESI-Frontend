@@ -1,8 +1,11 @@
+import { Routes } from './routes';
+
+import 'antd/dist/antd.css';
 import './styles/global.scss';
 
 function App() {
   return (
-    <h1>Projeto de ESI</h1>
+    <Routes />
   );
 }
 

@@ -1,0 +1,43 @@
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 40px 50px;
+  background: var(--light-background);
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 0;
+    color: var(--text);
+  }
+
+  .navbar-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    h3 {
+      display: flex;
+      align-items: center;
+      color: var(--text);
+      font-size: 22px;
+      margin: 0 20px 0 0;
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+
+    .log-out {
+      cursor: pointer;
+      font-size: 24px;
+  
+      transition: filter 0.2s;
+  
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+  }
+}
