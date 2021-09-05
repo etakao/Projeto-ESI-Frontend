@@ -1,11 +1,11 @@
-import "antd/dist/antd.css";
-import './styles/global.scss';
+import { Routes } from './routes';
 
-import Forms from './pages/Forms';
+import 'antd/dist/antd.css';
+import './styles/global.scss';
 
 function App() {
   return (
-    <Forms/>
+    <Routes />
   );
 }
 
