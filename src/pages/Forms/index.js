@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import { React, useState } from 'react';
 
 import './styles.scss';
 import Section from '../../components/Section';
@@ -7,7 +7,7 @@ const { Option } = Select;
 
 
 export default function Forms() {
-  const revalue = true;
+  const [revalue, setRevalue] = useState(true);
 
   const [name, setName] = useState('')
   const [curriculum, setCurriculum] = useState('')
@@ -36,12 +36,12 @@ export default function Forms() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(JSON.stringify({
-        name, curriculum, date, result, course, semester, obgApproved,
-        optApproved, concepts, allUnapproved, lastUnapproved, proLang,
-        qualification, maxLimitQualification, articlesAccept, articlesWaiting,
-        articlesSubmit, stageResearch, congressInCountry, congressGringo,
-        internshipAbroad, declarationOfIndependence, finalComments
-      }));
+      name, curriculum, date, result, course, semester, obgApproved,
+      optApproved, concepts, allUnapproved, lastUnapproved, proLang,
+      qualification, maxLimitQualification, articlesAccept, articlesWaiting,
+      articlesSubmit, stageResearch, congressInCountry, congressGringo,
+      internshipAbroad, declarationOfIndependence, finalComments
+    }));
   }
 
   return (
@@ -58,7 +58,7 @@ export default function Forms() {
           <span className="question">Link para o curriculum lattes</span>
           <input type="text" name="curriculum" onChange={e => setCurriculum(e.target.value)} />
           <span className="question">Data da última atualização do lattes</span>
-          <input type="date" name="date" onChange={e => setDate(e.target.value)}/>
+          <input type="date" name="date" onChange={e => setDate(e.target.value)} />
           <span className="question">Qual foi o resultado da avaliação do seu último relatório?</span>
           <Select name="result" onChange={value => setResult(value)}>
             <Option value={1}>Aprovado</Option>
@@ -82,7 +82,7 @@ export default function Forms() {
             <Option value={7}>7° semestre do curso</Option>
             <Option value={8}>8° semestre do curso</Option>
           </Select>
-          
+
           <Section>Atividades didáticas</Section>
           <span className="question">Em quantas disciplinas obrigatórias você já obteve aprovação?</span>
           <input type="number" name="obgApproved" onChange={e => setObgApproved(e.target.value)} ></input>
@@ -111,7 +111,7 @@ export default function Forms() {
             <Option value="1">Sim</Option>
             <Option value="0">Não</Option>
           </Select>
-          
+
           <Section>Atividades de pesquisa</Section>
           <span className="question">Você já realizou o exame de qualificação?</span>
           <Select name="qualification" onChange={value => setQualification(value)} >
@@ -160,26 +160,26 @@ export default function Forms() {
           <textarea rows="5" cols="50" name="declarationOfIndependence" onChange={e => setDeclarationOfIndependence(e.target.value)} />
           {revalue === true &&
             <>
-            <div className="revalue" >
-              <p>A prerrogativa de entregar uma nova versão do relatório é oferecida ao
-                orientando assumindo situações em que, por exemplo, ele precise ou queira 
-                esclarecer ou incluir informações que sejam relativas exclusivamente ao período
-                avaliado neste relatório (ou seja, apenas o semestre anterior já encerrado), tais
-                como:</p>
-              <p>-Explicar melhor alguma atividade realizada no período em questão que não foi 
-                bem explicada na primeira versão do relatório e, portanto, não avaliada 
-                apropriadamente de acordo com a visão do orientando e do orientador.</p>
-              <p>- Incluir alguma atividade realizada no período em questão, mas que o orientando
-                havia esquecido de incluir e que pode ter possivelmente prejudicado a avaliação
-                de seu desempenho.</p>
-              <p>- Argumentar os motivos pelos quais ele considera que apesar de suas atividades 
-                no período em questão terem sido exatamente aquelas (de forma que nada novo 
-                precisa ser adicionado), ainda assim orientando e orientador consideram que o 
-                desempenho não deveria ter sido considerado “insatisfatório”.</p>
-          </div>
-          <span className="question">Comentários finais do ORIENTANDO sobre seu desempenho no último semestre, considerando o relatório reapresentado:</span>
-          <textarea rows="5" cols="50" name="finalComments" onChange={e => setFinalComments(e.target.value)} />
-          </>
+              <div className="revalue" >
+                <p>A prerrogativa de entregar uma nova versão do relatório é oferecida ao
+                  orientando assumindo situações em que, por exemplo, ele precise ou queira
+                  esclarecer ou incluir informações que sejam relativas exclusivamente ao período
+                  avaliado neste relatório (ou seja, apenas o semestre anterior já encerrado), tais
+                  como:</p>
+                <p>-Explicar melhor alguma atividade realizada no período em questão que não foi
+                  bem explicada na primeira versão do relatório e, portanto, não avaliada
+                  apropriadamente de acordo com a visão do orientando e do orientador.</p>
+                <p>- Incluir alguma atividade realizada no período em questão, mas que o orientando
+                  havia esquecido de incluir e que pode ter possivelmente prejudicado a avaliação
+                  de seu desempenho.</p>
+                <p>- Argumentar os motivos pelos quais ele considera que apesar de suas atividades
+                  no período em questão terem sido exatamente aquelas (de forma que nada novo
+                  precisa ser adicionado), ainda assim orientando e orientador consideram que o
+                  desempenho não deveria ter sido considerado “insatisfatório”.</p>
+              </div>
+              <span className="question">Comentários finais do ORIENTANDO sobre seu desempenho no último semestre, considerando o relatório reapresentado:</span>
+              <textarea rows="5" cols="50" name="finalComments" onChange={e => setFinalComments(e.target.value)} />
+            </>
           }
           <button type="submit">Cadastrar</button>
         </form>

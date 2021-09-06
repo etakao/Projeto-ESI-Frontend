@@ -2,12 +2,61 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Layout } from 'antd';
-import { FiHome, FiInbox, FiUsers, FiMenu, FiX, FiInfo } from 'react-icons/fi';
+import { FiHome, FiUsers, FiMenu, FiInfo, FiChevronsLeft, FiUserPlus } from 'react-icons/fi';
+import { useUser } from '../../contexts/User';
 
 import './styles.scss';
 
 export function Sidebar({ isCollapsed, setIsCollapsed, navbarHeight }) {
   const { Sider } = Layout;
+
+  const { user } = useUser();
+
+  function chooseMenu() {
+    switch (user.level) {
+      case 0:
+        return (
+          <ul className={isCollapsed ? "icon-sidebar" : "full-sidebar"}>
+            <NavLink exact to='/dashboard' activeClassName="active-menu">
+              <FiHome />
+              <h2>Início</h2>
+            </NavLink>
+          </ul>
+        );
+      case 1:
+        return (
+          <ul className={isCollapsed ? "icon-sidebar" : "full-sidebar"}>
+            <NavLink exact to='/dashboard' activeClassName="active-menu">
+              <FiHome />
+              <h2>Início</h2>
+            </NavLink>
+            <NavLink to='/dashboard/students' activeClassName="active-menu">
+              <FiUsers />
+              <h2>Orientandos</h2>
+            </NavLink>
+          </ul>
+        );
+      case 2:
+        return (
+          <ul className={isCollapsed ? "icon-sidebar" : "full-sidebar"}>
+            <NavLink exact to='/dashboard' activeClassName="active-menu">
+              <FiHome />
+              <h2>Início</h2>
+            </NavLink>
+            <NavLink to='/dashboard/students' activeClassName="active-menu">
+              <FiUsers />
+              <h2>Alunos</h2>
+            </NavLink>
+            <NavLink exact to='/dashboard/signup' activeClassName="active-menu">
+              <FiUserPlus />
+              <h2>Cadastro</h2>
+            </NavLink>
+          </ul>
+        );
+      default:
+        break;
+    }
+  }
 
   return (
     <Sider
@@ -25,24 +74,11 @@ export function Sidebar({ isCollapsed, setIsCollapsed, navbarHeight }) {
           {isCollapsed ? (
             <FiMenu onClick={() => setIsCollapsed(false)} title="Expandir" />
           ) : (
-            <FiX onClick={() => setIsCollapsed(true)} title="Recolher" />
+            <FiChevronsLeft onClick={() => setIsCollapsed(true)} title="Recolher" />
           )}
         </div>
 
-        <ul className={isCollapsed ? "icon-sidebar" : "full-sidebar"}>
-          <NavLink exact to='/dashboard' activeClassName="active-menu">
-            <FiHome />
-            <h2>Início</h2>
-          </NavLink>
-          <NavLink to='/dashboard/students' activeClassName="active-menu">
-            <FiUsers />
-            <h2>Orientandos</h2>
-          </NavLink>
-          <NavLink exact to='/dashboard/notifications' activeClassName="active-menu">
-            <FiInbox />
-            <h2>Notificações</h2>
-          </NavLink>
-        </ul>
+        {chooseMenu()}
         <a
           href="https://github.com/etakao/Projeto-ESI-Frontend"
           target="_blank"
