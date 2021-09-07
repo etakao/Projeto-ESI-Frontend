@@ -7,19 +7,20 @@ import { FiEdit, FiEye, FiMoreHorizontal } from 'react-icons/fi';
 import './styles.scss';
 
 export function StudentActions({ student }) {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isEditable, setIsEditable] = useState(student.situation === "Avaliado " ? true : false);
   const [opinion, setOpinion] = useState('');
   const [evaluation, setEvaluation] = useState('');
   const { name } = student;
 
   const history = useHistory();
 
-  function showModal() {
-    setIsModalVisible(true);
+  const showModal = () => {
+    setIsVisible(true);
   }
 
-  function hideModal() {
-    setIsModalVisible(false);
+  const hideModal = () => {
+    setIsVisible(false);
   }
 
   function viewReport() {
@@ -43,7 +44,7 @@ export function StudentActions({ student }) {
       <Menu.Item key="1" onClick={showModal}>
         <FiEdit /> Avaliação
         <Modal
-          visible={isModalVisible}
+          visible={isVisible}
           title={`Avaliação do relatório de ${name}`}
           onCancel={hideModal}
           centered={true}
@@ -57,6 +58,7 @@ export function StudentActions({ student }) {
               id="opinion"
               rows="6"
               onChange={e => setOpinion(e.target.value)}
+              disabled={!isEditable}
               required
             />
 
@@ -66,6 +68,7 @@ export function StudentActions({ student }) {
               id="evaluation"
               onChange={e => setEvaluation(e.target.value)}
               defaultValue=""
+              disabled={!isEditable}
               required
             >
               <option value="" disabled hidden>Escolha uma avaliação</option>
@@ -77,9 +80,15 @@ export function StudentActions({ student }) {
               <button type="reset" onClick={hideModal}>
                 Cancelar
               </button>
-              <button type="submit">
-                Enviar
-              </button>
+              {isEditable ? (
+                <button type="submit">
+                  Enviar
+                </button>
+              ) : (
+                <button type="button" onClick={() => setIsEditable(true)}>
+                  Editar
+                </button>
+              )}
             </div>
           </form>
         </Modal>

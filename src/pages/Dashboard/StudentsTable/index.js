@@ -4,12 +4,14 @@ import { Table } from 'antd';
 
 import { students } from '../../../db';
 import { StudentActions } from '../../../components/StudentActions';
+import { useUser } from '../../../contexts/User';
 
 import './styles.scss';
 
 export function StudentsTable() {
+  const { user } = useUser();
 
-  const columns = [
+  const advisorColumns = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -45,14 +47,66 @@ export function StudentsTable() {
     },
   ];
 
+  const ccpColumns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'RA',
+      dataIndex: 'ra',
+      key: 'ra',
+    },
+    {
+      title: 'Orientador',
+      dataIndex: 'advisor',
+      key: 'advisor',
+    },
+    {
+      title: 'Avaliação do orientador',
+      dataIndex: 'advisorEvaluation',
+      key: 'advisorEvaluation',
+    },
+    {
+      title: 'Parecer do orientador',
+      dataIndex: 'advisorOpinion',
+      key: 'advisorOpinion',
+    },
+    {
+      title: 'Situação',
+      dataIndex: 'situation',
+      key: 'situation',
+    },
+    {
+      title: 'Ações',
+      key: 'action',
+      render: (student) => (
+        <StudentActions student={student} />
+      ),
+      align: 'center',
+    },
+  ];
+
+  function chooseColumn() {
+    switch (user.level) {
+      case 1:
+        return advisorColumns;
+      case 2:
+        return ccpColumns;
+      default:
+        break;
+    }
+  }
+
   return (
     <div className="panel-container">
       <h2>
-        Visão geral dos orientandos
+        Visão geral dos {user.level === 1 ? "orientandos" : "alunos"}
       </h2>
       <Table
         dataSource={students}
-        columns={columns}
+        columns={chooseColumn()}
         pagination={false}
         className="panel-table"
       />

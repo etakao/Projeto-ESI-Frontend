@@ -25,6 +25,10 @@
       border-radius: 4px;
       padding: 4px;
       margin-bottom: 20px;
+
+      &:disabled {
+        filter: brightness(0.6);
+      }
     }
 
     select {
@@ -34,6 +38,10 @@
       border-radius: 4px;
       padding: 4px;
       margin-bottom: 20px;
+
+      &:disabled {
+        filter: brightness(0.6);
+      }
 
       option {
         background: var(--background);
@@ -45,11 +53,13 @@
       justify-content: flex-end;
 
       button {
+        font-size: 14px;
+        padding: 8px 0;
+        width: 110px;
+        height: fit-content;
         background: var(--background);
         border: 1px solid var(--text);
         border-radius: 4px;
-        width: 110px;
-        padding: 4px 6px;
         
         transition: filter 0.2s;
 
