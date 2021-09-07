@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Layout } from 'antd';
-import { FiHome, FiUsers, FiMenu, FiInfo, FiChevronsLeft, FiUserPlus } from 'react-icons/fi';
+import { FiHome, FiUsers, FiMenu, FiInfo, FiChevronsLeft, FiUserPlus, FiBell } from 'react-icons/fi';
 import { useUser } from '../../contexts/User';
 
 import './styles.scss';
@@ -17,9 +17,17 @@ export function Sidebar({ isCollapsed, setIsCollapsed, navbarHeight }) {
       case 0:
         return (
           <ul className={isCollapsed ? "icon-sidebar" : "full-sidebar"}>
-            <NavLink exact to='/dashboard' activeClassName="active-menu">
+            <NavLink exact to='/studentPanel' activeClassName="active-menu">
               <FiHome />
               <h2>Início</h2>
+            </NavLink>
+            <NavLink to='/studentPanel/data' activeClassName="active-menu">
+              <FiUsers />
+              <h2>Meus Dados</h2>
+            </NavLink>
+            <NavLink to='/studentPanel/notification' activeClassName="active-menu">
+              <FiBell />
+              <h2>Notificação</h2>
             </NavLink>
           </ul>
         );
