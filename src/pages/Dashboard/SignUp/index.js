@@ -43,7 +43,13 @@ export function SignUp() {
       inputOnChange: e => setPassword(e.target.value),
       isStudentOnly: false
     },
-  ]
+  ];
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    console.log(name, email, password, ra);
+  }
 
   return (
     <div className="signup-container">
@@ -63,27 +69,30 @@ export function SignUp() {
         </span>
       </div>
 
-      {isSigningUpStudent ? (
-        signUpForm.map(input => {
-          return (
-            <form onSubmit="">
-              <label htmlFor={input.labelFor}>{input.labelText}</label>
-              <input id={input.inputId} type={input.inputType} onChange={input.inputOnChange} />
-            </form>
-          )
-        })
-      ) : (
-        signUpForm.map(input => {
-          if (!input.isStudentOnly) {
+      <form onSubmit={handleSubmit}>
+        {isSigningUpStudent ? (
+          signUpForm.map(input => {
             return (
-              <form onSubmit="">
+              <>
                 <label htmlFor={input.labelFor}>{input.labelText}</label>
                 <input id={input.inputId} type={input.inputType} onChange={input.inputOnChange} />
-              </form>
+              </>
             )
-          }
-        })
-      )}
+          })
+        ) : (
+          signUpForm.map(input => {
+            if (!input.isStudentOnly) {
+              return (
+                <>
+                  <label htmlFor={input.labelFor}>{input.labelText}</label>
+                  <input id={input.inputId} type={input.inputType} onChange={input.inputOnChange} />
+                </>
+              )
+            }
+          })
+        )}
+        <button type="submit">Cadastrar</button>
+      </form>
     </div >
   );
 }
