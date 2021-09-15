@@ -6,9 +6,10 @@ import { FiEdit, FiEye, FiMoreHorizontal } from 'react-icons/fi';
 
 import './styles.scss';
 
-export function StudentActions({ student }) {
+export function StudentActions({ student, thisEvaluation }) {
   const [isVisible, setIsVisible] = useState(false);
-  const [isEditable, setIsEditable] = useState(student.situation === "Avaliado " ? true : false);
+  const isEvaluated = thisEvaluation.status === "Avaliado" ? true : false;
+  const [isEditable, setIsEditable] = useState(false);
   const [opinion, setOpinion] = useState('');
   const [evaluation, setEvaluation] = useState('');
   const { name } = student;
@@ -24,8 +25,13 @@ export function StudentActions({ student }) {
   }
 
   function viewReport() {
-    const { ra } = student;
-    history.push(`/dashboard/students/${ra}`);
+    history.push({
+      pathname: `/dashboard/students/${student.numero_usp}/info`,
+      state: {
+        student: student,
+        evaluationId: thisEvaluation.id
+      }
+    });
   }
 
   function submitEvaluation(e) {
@@ -80,13 +86,13 @@ export function StudentActions({ student }) {
               <button type="reset" onClick={hideModal}>
                 Cancelar
               </button>
-              {isEditable ? (
-                <button type="submit">
-                  Enviar
-                </button>
-              ) : (
+              {isEvaluated ? (
                 <button type="button" onClick={() => setIsEditable(true)}>
                   Editar
+                </button>
+              ) : (
+                <button type="submit">
+                  Enviar
                 </button>
               )}
             </div>
@@ -97,7 +103,7 @@ export function StudentActions({ student }) {
   );
 
   return (
-    <Dropdown overlay={menu} trigger={['click']} placement="bottomRight" className="table-dropdown">
+    <Dropdown overlay={menu} trigger={['click']} placement="bottomLeft" className="table-dropdown">
       <FiMoreHorizontal onClick={e => e.preventDefault()} style={{ cursor: "pointer" }} />
     </Dropdown>
   );

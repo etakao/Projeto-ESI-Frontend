@@ -3,14 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
+import './styles.scss';
 import { students } from '../../../db';
 
-import './styles.scss';
+export function SeeMore({ location }) {
+  const [form, setForm] = useState({});
 
-export function SeeMore() {
-  const [student, setStudent] = useState('');
-
-  const { studentRa } = useParams();
+  const { studentUspNumber } = useParams();
 
   // const tradutor = {
   //   name: "Nome",
@@ -19,14 +18,13 @@ export function SeeMore() {
   //   curriculumLattes: "Link currículo Lattes"
   // }
 
-  function getStudentInfo(ra) {
-    setStudent(students.find(student => student.ra === ra));
-  }
-
   useEffect(() => {
-    const ra = parseInt(studentRa);
-    getStudentInfo(ra);
-  }, [studentRa]);
+    const usp_number = parseInt(studentUspNumber);
+    const foundStudent = students.find(student => student.numero_usp === usp_number);
+    const foundEvaluation = foundStudent.evaluations.find(evaluation =>
+      evaluation.id === location.state.evaluationId);
+    setForm(foundEvaluation.form);
+  }, [studentUspNumber]);
 
   return (
     <div className="panel-info">
@@ -36,7 +34,7 @@ export function SeeMore() {
 
       <div className="student-info ">
         <div className="title-info">
-          <h2>Relatório semestral de {student.name}</h2>
+          <h2>Relatório semestral de {form.name}</h2>
         </div>
         {/* {Object.entries(student).forEach((keys) => (
           <div>
@@ -45,15 +43,15 @@ export function SeeMore() {
           </div>
         ))} */}
         <h3>Nome</h3>
-        <p>{student.name}</p>
+        <p>{form.name}</p>
         <h3>Nome do orientador</h3>
-        <p>{student.advisor}</p>
+        <p>{form.advisor}</p>
         <h3>Número USP</h3>
-        <p>{student.ra}</p>
+        <p>{form.numero_usp}</p>
         <h3>Curriculum Lates</h3>
-        <p>{student.lattes}</p>
+        <p>{form.lattes}</p>
         <h3>Curso</h3>
-        <p>{student.course}</p>
+        <p>{form.course}</p>
       </div>
     </div>
   )

@@ -1,62 +1,147 @@
 export const students = [
   {
-    key: '1',
     name: 'Roberto',
-    ra: 18541932,
+    numero_usp: 18541932,
     course: 'Mestrado',
-    situation: 'Avaliado',
     email: 'roberto@usp.br',
     advisor: 'Marcelo',
     lattes: 'lattes.cnpq.br/18541932',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    evaluations: [
+      {
+        id: 1,
+        status: 'Avaliado',
+        is_revaluation: false,
+        avaliacao_orientador: 'Aprovado',
+        parecer_orientador: 'Parecer do orientador',
+        avaliacao_ccp: 'Concorda com orientador',
+        parecer_ccp: 'Parecer da CCP',
+        created_At: '10/09/2021',
+        form: {
+          id: 1,
+          name: 'Roberto',
+          numero_usp: 18541932,
+          course: 'Mestrado',
+          email: 'roberto@usp.br',
+          advisor: 'Marcelo',
+          lattes: 'lattes.cnpq.br/18541932'
+        }
+      }
+    ]
   },
   {
-    key: '2',
     name: 'Ademir',
-    ra: 19346512,
+    numero_usp: 19346512,
     course: 'Doutorado',
-    situation: 'Não avaliado',
     email: 'ademir@usp.br',
     advisor: 'Marcelo',
     lattes: 'lattes.cnpq.br/19346512',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    evaluations: [
+      {
+        id: 2,
+        status: 'Não avaliado',
+        is_revaluation: 'false',
+        avaliacao_orientador: 'Aprovado',
+        parecer_orientador: 'Parecer do orientador',
+        avaliacao_ccp: 'Concorda com orientador',
+        parecer_ccp: 'Parecer da CCP',
+        created_At: '10/09/2021',
+        form: {
+          id: 2,
+          name: 'Roberto',
+          numero_usp: 18541932,
+          course: 'Mestrado',
+          email: 'roberto@usp.br',
+          advisor: 'Marcelo',
+          lattes: 'lattes.cnpq.br/18541932'
+        }
+      }
+    ]
   },
   {
-    key: '3',
     name: 'Elba',
-    ra: 18545221,
+    numero_usp: 18545221,
     course: 'Mestrado',
-    situation: 'Avaliado',
     email: 'elba@usp.br',
     advisor: 'Marcelo',
     lattes: 'lattes.cnpq.br/18545221',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    evaluations: [
+      {
+        id: 3,
+        status: 'Não avaliado',
+        is_revaluation: 'false',
+        avaliacao_orientador: 'Aprovado',
+        parecer_orientador: 'Parecer do orientador',
+        avaliacao_ccp: 'Concorda com orientador',
+        parecer_ccp: 'Parecer da CCP',
+        created_At: '10/09/2021',
+        form: {
+          id: 3,
+          name: 'Roberto',
+          numero_usp: 18541932,
+          course: 'Mestrado',
+          email: 'roberto@usp.br',
+          advisor: 'Marcelo',
+          lattes: 'lattes.cnpq.br/18541932'
+        }
+      }
+    ]
   },
   {
-    key: '4',
     name: 'Thalita',
-    ra: 20212349,
+    numero_usp: 20212349,
     course: 'Doutorado',
-    situation: 'Não avaliado',
     email: 'thalita@usp.br',
     advisor: 'Marcelo',
     lattes: 'lattes.cnpq.br/20212349',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    evaluations: [
+      {
+        id: 4,
+        status: 'Não avaliado',
+        is_revaluation: 'false',
+        avaliacao_orientador: 'Aprovado',
+        parecer_orientador: 'Parecer do orientador',
+        avaliacao_ccp: 'Concorda com orientador',
+        parecer_ccp: 'Parecer da CCP',
+        created_At: '10/09/2021',
+        form: {
+          id: 4,
+          name: 'Roberto',
+          numero_usp: 18541932,
+          course: 'Mestrado',
+          email: 'roberto@usp.br',
+          advisor: 'Marcelo',
+          lattes: 'lattes.cnpq.br/18541932'
+        }
+      }
+    ]
   },
   {
-    key: '5',
     name: 'Javier',
-    ra: 18260531,
+    numero_usp: 18260531,
     course: 'Mestrado',
-    situation: 'Avaliado',
     email: 'javier@usp.br',
     advisor: 'Marcelo',
     lattes: 'lattes.cnpq.br/18260531',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    evaluations: [
+      {
+        id: 5,
+        status: 'Avaliado',
+        is_revaluation: 'false',
+        avaliacao_orientador: 'Aprovado',
+        parecer_orientador: 'Parecer do orientador',
+        avaliacao_ccp: 'Concorda com orientador',
+        parecer_ccp: 'Parecer da CCP',
+        created_At: '10/09/2021',
+        form: {
+          id: 5,
+          name: 'Roberto',
+          numero_usp: 18541932,
+          course: 'Mestrado',
+          email: 'roberto@usp.br',
+          advisor: 'Marcelo',
+          lattes: 'lattes.cnpq.br/18541932'
+        }
+      }
+    ]
   }
 ]
