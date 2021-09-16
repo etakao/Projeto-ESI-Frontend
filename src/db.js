@@ -6,10 +6,11 @@ export const students = [
     course: 'Mestrado',
     situation: 'Avaliado',
     email: 'roberto@usp.br',
-    advisor: 'Marcelo',
+    advisor: 'Fernando',
     lattes: 'lattes.cnpq.br/18541932',
     advisorEvaluation: 'Aprovado',
     advisorOpinion: 'Parecer do orientador'
+    
   },
   {
     key: '2',
@@ -58,5 +59,52 @@ export const students = [
     lattes: 'lattes.cnpq.br/18260531',
     advisorEvaluation: 'Aprovado',
     advisorOpinion: 'Parecer do orientador'
+  }
+]
+
+export const forms = [
+  {
+    key: '1',
+    deadline: '20/11/2021',
+    semester: '4° semestre',
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Em análise',
+    situation: 'Avaliado',
+  },
+  {
+    key: '2',
+    deadline: '20/05/2021',
+    semester: '3° semestre',
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Aprovado',
+    situation: 'Avaliado',
+  },
+  {
+    key: '3',
+    deadline: '20/11/2020',
+    semester: '2° semestre',
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Aprovado',
+    situation: 'Avaliado',
+  },
+  {
+    key: '4',
+    deadline: '20/05/2020',
+    semester: '1° semestre',
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Aprovado',
+    situation: 'Avaliado',
   }
 ]

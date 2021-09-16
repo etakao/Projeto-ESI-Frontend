@@ -1,0 +1,29 @@
+.panel-container {
+  button {
+    margin-top: 32px;
+    height: 55px;
+    width: 240px;
+
+    background: var(--light-background);
+    border: none;
+    border-radius: 8px;
+    color: var(--text);
+
+    font-weight: 600;
+    font-size: 22px;
+
+    transition: filter 0.3s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+}
+
+.situation {
+  h2 {
+    margin: 25px 10px 25px auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--text);
+  }
+}
