@@ -44,6 +44,18 @@ export function History() {
       title: 'Avaliação do orientador',
       dataIndex: 'avaliacao_orientador',
       key: 'avaliacao_orientador',
+      render: (evaluation) => {
+        switch (evaluation) {
+          case 0:
+            return "Adequado";
+          case 1:
+            return "Adequado com ressalvas";
+          case 2:
+            return "Inadequado";
+          default:
+            break;
+        }
+      }
     },
     {
       title: 'Parecer do orientador',

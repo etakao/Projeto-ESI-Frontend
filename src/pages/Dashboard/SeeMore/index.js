@@ -7,23 +7,26 @@ import './styles.scss';
 import { students } from '../../../db';
 
 export function SeeMore({ location }) {
-  const [form, setForm] = useState({});
+  const [studentForm, setStudentForm] = useState(null);
 
   const { studentUspNumber } = useParams();
 
-  // const tradutor = {
-  //   name: "Nome",
-  //   advisor: "Nome do orientador",
-  //   ra: "Número USP",
-  //   curriculumLattes: "Link currículo Lattes"
-  // }
+  const tradutor = {
+    id: "Identifição",
+    name: "Nome",
+    email: "Email",
+    advisor: "Nome do orientador",
+    numero_usp: "Número USP",
+    lattes: "Link currículo Lattes",
+    course: "Curso"
+  }
 
   useEffect(() => {
     const usp_number = parseInt(studentUspNumber);
     const foundStudent = students.find(student => student.numero_usp === usp_number);
     const foundEvaluation = foundStudent.evaluations.find(evaluation =>
       evaluation.id === location.state.evaluationId);
-    setForm(foundEvaluation.form);
+    setStudentForm(foundEvaluation.form);
   }, [studentUspNumber]);
 
   return (
@@ -32,27 +35,21 @@ export function SeeMore({ location }) {
         <FiArrowLeft /> Voltar
       </Link>
 
-      <div className="student-info ">
-        <div className="title-info">
-          <h2>Relatório semestral de {form.name}</h2>
-        </div>
-        {/* {Object.entries(student).forEach((keys) => (
-          <div>
-            <h3>{tradutor[keys[0]]}</h3>
-            <p>{keys[1]}</p>
+      {studentForm !== null ? (
+        <div className="student-info ">
+          <div className="title-info">
+            <h2>Relatório semestral de {studentForm.name}</h2>
           </div>
-        ))} */}
-        <h3>Nome</h3>
-        <p>{form.name}</p>
-        <h3>Nome do orientador</h3>
-        <p>{form.advisor}</p>
-        <h3>Número USP</h3>
-        <p>{form.numero_usp}</p>
-        <h3>Curriculum Lates</h3>
-        <p>{form.lattes}</p>
-        <h3>Curso</h3>
-        <p>{form.course}</p>
-      </div>
+          {Object.entries(studentForm).map(attr => (
+            <div>
+              <h3>{tradutor[attr[0]]}</h3>
+              <p>{attr[1]}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Carregando informaçãoes...</p>
+      )}
     </div>
   )
 }
