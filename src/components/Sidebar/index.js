@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Layout } from 'antd';
-import { FiHome, FiUsers, FiMenu, FiInfo, FiChevronsLeft, FiUserPlus } from 'react-icons/fi';
+import { FiHome, FiUsers, FiMenu, FiInfo, FiChevronsLeft, FiUserPlus, FiBell } from 'react-icons/fi';
 import { useUser } from '../../contexts/User';
 
 import './styles.scss';
@@ -32,6 +32,7 @@ export function Sidebar({ isCollapsed, setIsCollapsed, navbarHeight }) {
       visibleTo: [2]
     },
   ]
+
 
   return (
     <Sider
