@@ -27,7 +27,7 @@ const removeState = (token) => {
 
 const UserContext = createContext();
 
-// const USER_TOKEN = '@sadap/user';
+const USER_TOKEN = '@sadap/user';
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState({
@@ -40,15 +40,20 @@ export function UserContextProvider({ children }) {
     // level: 2,
     // user_type: "CCP",
     // name: "Alfredo"
+    // level: 1,
+    // user_type: "Orientador",
+    // level: 2,
+    //user_type: "CCP",
+    //name: "Alfredo"
   });
 
   // function removeUser() {
   //   removeState(USER_TOKEN);
   // }
 
-  // useEffect(() => {
-  //   saveState(USER_TOKEN, user);
-  // }, [user]);
+  useEffect(() => {
+     saveState(USER_TOKEN, user);
+   }, [user]);
 
   return (
     <UserContext.Provider value={{
