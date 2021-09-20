@@ -7,7 +7,7 @@
   background: var(--light-background);
 
   h2 {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 0;
     color: var(--text);
   }
@@ -21,8 +21,8 @@
       display: flex;
       align-items: center;
       color: var(--text);
-      font-size: 22px;
-      margin: 0 20px 0 0;
+      font-size: 20px;
+      margin: 0 30px 0 0;
 
       svg {
         margin-right: 10px;
@@ -31,7 +31,7 @@
 
     .log-out {
       cursor: pointer;
-      font-size: 24px;
+      font-size: 20px;
   
       transition: filter 0.2s;
   

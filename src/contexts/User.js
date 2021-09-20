@@ -34,7 +34,7 @@ export function UserContextProvider({ children }) {
     level: 0,
     user_type: "Aluno",
     name: "Ademir",
-    ra: "19346512"
+    numero_usp: 19346512,
     // level: 1,
     // user_type: "Orientador",
     // level: 2,

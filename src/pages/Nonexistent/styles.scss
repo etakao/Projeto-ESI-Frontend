@@ -1,0 +1,36 @@
+.nonexistent-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1, h2 {
+    color: var(--text);
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      text-decoration: none;
+      color: var(--text);
+
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+
+      svg {
+        margin-right: 10px;
+      }
+    }
+  }
+}

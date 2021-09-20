@@ -6,28 +6,27 @@ import { students } from '../../../db';
 import './styles.scss';
 
 export function UserData() {
-  const [student, setStudent] = useState('');
+  const [student, setStudent] = useState({});
 
   const { user } = useUser();
-  
-  // const tradutor = {
-    //   name: "Nome",
-    //   advisor: "Nome do orientador",
-    //   ra: "Número USP",
-    //   curriculumLattes: "Link currículo Lattes"
-    // }
-    
-    function getStudentInfo(ra) {
-      setStudent(students.find(student => student.ra === ra));
-    }
-    
-    useEffect(() => {
-      const ra = parseInt(user.ra);
-      getStudentInfo(ra);
-    }, [user.ra]);
 
-    
-    return (
+  // const tradutor = {
+  //   name: "Nome",
+  //   advisor: "Nome do orientador",
+  //   ra: "Número USP",
+  //   curriculumLattes: "Link currículo Lattes"
+  // }
+
+  function getStudentInfo(numero_usp) {
+    setStudent(students.find(student => student.numero_usp === numero_usp));
+  }
+
+  useEffect(() => {
+    const numero_usp = parseInt(user.numero_usp);
+    getStudentInfo(numero_usp);
+  }, [user.numero_usp]);
+
+  return (
     <div className="panel-info">
       <div className="student-info ">
         <div className="title-info">

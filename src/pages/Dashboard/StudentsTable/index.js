@@ -1,26 +1,39 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Table } from 'antd';
+import { FiClipboard } from 'react-icons/fi';
 
-import { students } from '../../../db';
-import { StudentActions } from '../../../components/StudentActions';
+import { evaluations, students } from '../../../db';
 import { useUser } from '../../../contexts/User';
 
 import './styles.scss';
 
 export function StudentsTable() {
   const { user } = useUser();
+  const history = useHistory();
 
-  const advisorColumns = [
+  function seeHistory(id) {
+    history.push(`/dashboard/students/${id}`);
+  }
+
+  function getLastEvaluation(student_id) {
+    const studentEvaluations = evaluations.filter(evaluation => evaluation.student_id === student_id);
+    return studentEvaluations[studentEvaluations.length - 1].situation;
+  }
+
+  const columns = [
     {
-      title: 'Name',
+      title: 'Nome',
       dataIndex: 'name',
       key: 'name',
+      visibleTo: 'all'
     },
     {
-      title: 'RA',
-      dataIndex: 'ra',
-      key: 'ra',
+      title: 'Número USP',
+      dataIndex: 'numero_usp',
+      key: 'nusp',
+      visibleTo: 'all'
     },
     {
       title: 'Curso',
@@ -31,69 +44,42 @@ export function StudentsTable() {
         { text: 'Doutorado', value: 'Doutorado' },
       ],
       onFilter: (value, record) => record.course.indexOf(value) === 0,
-    },
-    {
-      title: 'Situação',
-      dataIndex: 'situation',
-      key: 'situation',
-    },
-    {
-      title: 'Ações',
-      key: 'action',
-      render: (student) => (
-        <StudentActions student={student} />
-      ),
-      align: 'center',
-    },
-  ];
-
-  const ccpColumns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'RA',
-      dataIndex: 'ra',
-      key: 'ra',
+      visibleTo: 'orientador'
     },
     {
       title: 'Orientador',
       dataIndex: 'advisor',
       key: 'advisor',
+      visibleTo: 'ccp'
     },
     {
-      title: 'Avaliação do orientador',
-      dataIndex: 'advisorEvaluation',
-      key: 'advisorEvaluation',
-    },
-    {
-      title: 'Parecer do orientador',
-      dataIndex: 'advisorOpinion',
-      key: 'advisorOpinion',
-    },
-    {
-      title: 'Situação',
-      dataIndex: 'situation',
-      key: 'situation',
-    },
-    {
-      title: 'Ações',
-      key: 'action',
+      title: 'Status',
+      key: 'status',
       render: (student) => (
-        <StudentActions student={student} />
+        getLastEvaluation(student.id)
+      ),
+      visibleTo: 'all'
+    },
+    {
+      title: 'Histórico',
+      key: 'history',
+      render: (student) => (
+        <FiClipboard
+          onClick={() => seeHistory(student.id)}
+          style={{ cursor: 'pointer' }}
+        />
       ),
       align: 'center',
+      visibleTo: 'all'
     },
   ];
 
-  function chooseColumn() {
+  function handleColumns() {
     switch (user.level) {
       case 1:
-        return advisorColumns;
+        return columns.filter(column => column.visibleTo === "all" || column.visibleTo === "orientador");
       case 2:
-        return ccpColumns;
+        return columns.filter(column => column.visibleTo === "all" || column.visibleTo === "ccp");
       default:
         break;
     }
@@ -106,7 +92,7 @@ export function StudentsTable() {
       </h2>
       <Table
         dataSource={students}
-        columns={chooseColumn()}
+        columns={handleColumns()}
         pagination={false}
         className="panel-table"
       />

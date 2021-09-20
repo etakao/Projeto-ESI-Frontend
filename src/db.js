@@ -1,110 +1,173 @@
 export const students = [
   {
-    key: '1',
-    name: 'Roberto',
-    ra: 18541932,
+    id: 1,
+    name: 'Roberto Roberto Roberto de Roberto da Roberto',
+    numero_usp: 18541932,
     course: 'Mestrado',
-    situation: 'Avaliado',
     email: 'roberto@usp.br',
     advisor: 'Fernando',
-    lattes: 'lattes.cnpq.br/18541932',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
-    
+    lattes: 'lattes.cnpq.br/18541932'
   },
   {
-    key: '2',
+    id: 2,
     name: 'Ademir',
-    ra: 19346512,
+    numero_usp: 19346512,
     course: 'Doutorado',
-    situation: 'Não avaliado',
     email: 'ademir@usp.br',
     advisor: 'Marcelo',
-    lattes: 'lattes.cnpq.br/19346512',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    lattes: 'lattes.cnpq.br/19346512'
   },
   {
-    key: '3',
+    id: 3,
     name: 'Elba',
-    ra: 18545221,
+    numero_usp: 18545221,
     course: 'Mestrado',
-    situation: 'Avaliado',
     email: 'elba@usp.br',
     advisor: 'Marcelo',
-    lattes: 'lattes.cnpq.br/18545221',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    lattes: 'lattes.cnpq.br/18545221'
   },
   {
-    key: '4',
+    id: 4,
     name: 'Thalita',
-    ra: 20212349,
+    numero_usp: 20212349,
     course: 'Doutorado',
-    situation: 'Não avaliado',
     email: 'thalita@usp.br',
     advisor: 'Marcelo',
     lattes: 'lattes.cnpq.br/20212349',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
   },
   {
-    key: '5',
+    id: 5,
     name: 'Javier',
-    ra: 18260531,
+    numero_usp: 18260531,
     course: 'Mestrado',
-    situation: 'Avaliado',
     email: 'javier@usp.br',
     advisor: 'Marcelo',
-    lattes: 'lattes.cnpq.br/18260531',
-    advisorEvaluation: 'Aprovado',
-    advisorOpinion: 'Parecer do orientador'
+    lattes: 'lattes.cnpq.br/18260531'
   }
 ]
 
-export const forms = [
+export const evaluations = [
   {
-    key: '1',
-    deadline: '20/11/2021',
-    semester: '4° semestre',
+    id: 1,
+    student_id: 1,
     advisor: 'Fernando',
     advisorOpinion: 'Parecer do orientador',
     advisorEvaluation: 'Aprovado',
     ccpOpinion: 'Parecer da CCP',
     ccpEvaluation: 'Em análise',
     situation: 'Avaliado',
+    is_revaluation: 1,
+    created_At: '20/09/2021'
   },
   {
-    key: '2',
+    id: 2,
+    student_id: 2,
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Em análise',
+    situation: 'Avaliado',
+    is_revaluation: 1,
+    created_At: '20/09/2021'
+  },
+  {
+    id: 3,
+    student_id: 3,
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Em análise',
+    situation: 'Avaliado',
+    is_revaluation: 1,
+    created_At: '20/09/2021'
+  },
+  {
+    id: 4,
+    student_id: 4,
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Em análise',
+    situation: 'Avaliado',
+    is_revaluation: 1,
+    created_At: '20/09/2021'
+  },
+  {
+    id: 5,
+    student_id: 5,
+    advisor: 'Fernando',
+    advisorOpinion: 'Parecer do orientador',
+    advisorEvaluation: 'Aprovado',
+    ccpOpinion: 'Parecer da CCP',
+    ccpEvaluation: 'Em análise',
+    situation: 'Avaliado',
+    is_revaluation: 1,
+    created_At: '20/09/2021'
+  }
+]
+
+export const forms = [
+  {
+    id: 1,
+    evaluation_id: 1,
+    deadline: '20/11/2021',
+    semester: '4° semestre',
+    name: 'Roberto',
+    numero_usp: 18541932,
+    course: 'Mestrado',
+    email: 'roberto@usp.br',
+    advisor: 'Marcelo',
+    lattes: 'lattes.cnpq.br/18541932'
+  },
+  {
+    id: 2,
+    evaluation_id: 2,
     deadline: '20/05/2021',
     semester: '3° semestre',
-    advisor: 'Fernando',
-    advisorOpinion: 'Parecer do orientador',
-    advisorEvaluation: 'Aprovado',
-    ccpOpinion: 'Parecer da CCP',
-    ccpEvaluation: 'Aprovado',
-    situation: 'Avaliado',
+    name: 'Roberto',
+    numero_usp: 18541932,
+    course: 'Mestrado',
+    email: 'roberto@usp.br',
+    advisor: 'Marcelo',
+    lattes: 'lattes.cnpq.br/18541932'
   },
   {
-    key: '3',
+    id: 3,
+    evaluation_id: 3,
     deadline: '20/11/2020',
     semester: '2° semestre',
-    advisor: 'Fernando',
-    advisorOpinion: 'Parecer do orientador',
-    advisorEvaluation: 'Aprovado',
-    ccpOpinion: 'Parecer da CCP',
-    ccpEvaluation: 'Aprovado',
-    situation: 'Avaliado',
+    name: 'Roberto',
+    numero_usp: 18541932,
+    course: 'Mestrado',
+    email: 'roberto@usp.br',
+    advisor: 'Marcelo',
+    lattes: 'lattes.cnpq.br/18541932'
   },
   {
-    key: '4',
+    id: 4,
+    evaluation_id: 4,
     deadline: '20/05/2020',
     semester: '1° semestre',
-    advisor: 'Fernando',
-    advisorOpinion: 'Parecer do orientador',
-    advisorEvaluation: 'Aprovado',
-    ccpOpinion: 'Parecer da CCP',
-    ccpEvaluation: 'Aprovado',
-    situation: 'Avaliado',
-  }
+    name: 'Roberto',
+    numero_usp: 18541932,
+    course: 'Mestrado',
+    email: 'roberto@usp.br',
+    advisor: 'Marcelo',
+    lattes: 'lattes.cnpq.br/18541932'
+  },
+  {
+    id: 5,
+    evaluation_id: 5,
+    deadline: '20/05/2020',
+    semester: '1° semestre',
+    name: 'Roberto',
+    numero_usp: 18541932,
+    course: 'Mestrado',
+    email: 'roberto@usp.br',
+    advisor: 'Marcelo',
+    lattes: 'lattes.cnpq.br/18541932'
+  },
 ]
