@@ -1,0 +1,48 @@
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 30px;
+  }
+
+  .signup-tabs {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    span {
+      cursor: pointer;
+
+      transition: all 0.2s;
+
+      &:hover {
+        text-decoration: underline;
+        filter: none;
+      }
+    }
+
+    .active-tab {
+      text-decoration: underline;
+    }
+
+    .inactive-tab {
+      filter: brightness(0.8);
+    }
+  }
+
+  form {
+    width: 50%;
+    
+    label {
+      margin-bottom: 10px;
+    }
+
+    input {
+      margin-bottom: 20px;
+    }
+  }
+}
