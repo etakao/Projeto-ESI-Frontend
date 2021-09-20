@@ -24,7 +24,7 @@ function Dashboard() {
             isCollapsed={collapsed}
             setNavbarHeight={setNavbarHeight}
           />
-          <div className="content-container">
+          <div className="content-container" style={{ height: `calc(100vh - ${navbarHeight}px)` }}>
             <DashboardRoutes />
           </div>
         </div>
