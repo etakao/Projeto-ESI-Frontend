@@ -1,6 +1,6 @@
 export const students = [
   {
-    name: 'Roberto',
+    name: 'Roberto Roberto Roberto de Roberto da Roberto',
     numero_usp: 18541932,
     course: 'Mestrado',
     email: 'roberto@usp.br',
