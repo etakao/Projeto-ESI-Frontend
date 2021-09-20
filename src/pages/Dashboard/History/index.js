@@ -3,24 +3,26 @@ import { Link, useParams } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 import { Table } from 'antd';
-import { students } from '../../../db';
 
-import './styles.scss';
+import { evaluations, students } from '../../../db';
 import { StudentActions } from '../../../components/StudentActions';
 
+import './styles.scss';
+
 export function History() {
-  const { studentUspNumber } = useParams();
+  const { id } = useParams();
 
   const [student, setStudent] = useState({});
-  const [evaluations, setEvaluations] = useState([]);
+  const [studentEvaluations, setStudentEvaluations] = useState([]);
 
   useEffect(() => {
-    const usp_number = parseInt(studentUspNumber);
-    const foundStudent = students.find(student => student.numero_usp === usp_number);
+    const student_id = parseInt(id);
+    const student_evaluations = evaluations.find(evaluation => evaluation.student_id === student_id);
 
-    setStudent(foundStudent);
-    setEvaluations(foundStudent.evaluations);
-  }, [studentUspNumber]);
+    setStudent(students.find(student => student.id === student_id));
+    setStudentEvaluations(evaluations.filter(evaluation => evaluation.student_id === student_id));
+    console.log(student_evaluations)
+  }, [id]);
 
   const columns = [
     {
@@ -30,43 +32,29 @@ export function History() {
     },
     {
       title: 'Status',
-      dataIndex: 'status',
+      dataIndex: 'situation',
       key: 'status',
     },
     {
       title: 'Reavaliação',
+      dataIndex: 'is_revaluation',
       key: 'revaluation',
-      render: (evaluation) => (
-        evaluation.is_revaluation ? "Sim" : "Não"
-      )
     },
     {
       title: 'Avaliação do orientador',
-      dataIndex: 'avaliacao_orientador',
-      key: 'avaliacao_orientador',
-      render: (evaluation) => {
-        switch (evaluation) {
-          case 0:
-            return "Adequado";
-          case 1:
-            return "Adequado com ressalvas";
-          case 2:
-            return "Inadequado";
-          default:
-            break;
-        }
-      }
+      dataIndex: 'advisorEvaluation',
+      key: 'advisorEvaluation',
     },
     {
       title: 'Parecer do orientador',
-      dataIndex: 'parecer_orientador',
-      key: 'parecer_orientador',
+      dataIndex: 'advisorOpinion',
+      key: 'advisorOpinion',
     },
     {
       title: 'Ações',
       key: 'action',
       render: (evaluation) => (
-        <StudentActions student={student} thisEvaluation={evaluation} form={evaluation.form} />
+        <StudentActions studentEvaluation={evaluation} student={student} />
       ),
       align: 'center',
     },
@@ -81,7 +69,7 @@ export function History() {
       <h2>Histórico de {student.name}</h2>
 
       <Table
-        dataSource={evaluations}
+        dataSource={studentEvaluations}
         columns={columns}
         pagination={false}
         className="panel-table"

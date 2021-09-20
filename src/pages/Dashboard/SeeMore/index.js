@@ -3,13 +3,15 @@ import { Link, useParams } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
+import { forms, students } from '../../../db';
+
 import './styles.scss';
-import { students } from '../../../db';
 
 export function SeeMore({ location }) {
   const [studentForm, setStudentForm] = useState(null);
+  const [student, setStudent] = useState({});
 
-  const { studentUspNumber } = useParams();
+  const { id } = useParams();
 
   const tradutor = {
     id: "Identifição",
@@ -22,12 +24,10 @@ export function SeeMore({ location }) {
   }
 
   useEffect(() => {
-    const usp_number = parseInt(studentUspNumber);
-    const foundStudent = students.find(student => student.numero_usp === usp_number);
-    const foundEvaluation = foundStudent.evaluations.find(evaluation =>
-      evaluation.id === location.state.evaluationId);
-    setStudentForm(foundEvaluation.form);
-  }, [studentUspNumber]);
+    const student_id = parseInt(id);
+    setStudent(students.find(student => student.id === student_id));
+    setStudentForm(forms.find(form => form.evaluation_id === location.state.evaluationId));
+  }, [id]);
 
   return (
     <div className="panel-info">
@@ -38,7 +38,7 @@ export function SeeMore({ location }) {
       {studentForm !== null ? (
         <div className="student-info ">
           <div className="title-info">
-            <h2>Relatório semestral de {studentForm.name}</h2>
+            <h2>Relatório semestral de {student.name}</h2>
           </div>
           {Object.entries(studentForm).map(attr => (
             <div>

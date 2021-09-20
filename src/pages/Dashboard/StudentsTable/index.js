@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Table } from 'antd';
 import { FiClipboard } from 'react-icons/fi';
 
-import { students } from '../../../db';
+import { evaluations, students } from '../../../db';
 import { useUser } from '../../../contexts/User';
 
 import './styles.scss';
@@ -13,12 +13,13 @@ export function StudentsTable() {
   const { user } = useUser();
   const history = useHistory();
 
-  function seeHistory(usp_number) {
-    history.push(`/dashboard/students/${usp_number}`);
+  function seeHistory(id) {
+    history.push(`/dashboard/students/${id}`);
   }
 
-  function getLastEvaluation(evaluations) {
-    return evaluations[evaluations.length - 1].status;
+  function getLastEvaluation(student_id) {
+    const studentEvaluations = evaluations.filter(evaluation => evaluation.student_id === student_id);
+    return studentEvaluations[studentEvaluations.length - 1].situation;
   }
 
   const columns = [
@@ -55,7 +56,7 @@ export function StudentsTable() {
       title: 'Status',
       key: 'status',
       render: (student) => (
-        getLastEvaluation(student.evaluations)
+        getLastEvaluation(student.id)
       ),
       visibleTo: 'all'
     },
@@ -64,7 +65,7 @@ export function StudentsTable() {
       key: 'history',
       render: (student) => (
         <FiClipboard
-          onClick={() => seeHistory(student.numero_usp)}
+          onClick={() => seeHistory(student.id)}
           style={{ cursor: 'pointer' }}
         />
       ),

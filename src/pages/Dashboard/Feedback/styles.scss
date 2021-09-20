@@ -1,0 +1,29 @@
+.panel-info {
+  padding: 10px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2,
+  h3,
+  p {
+    color: var(--text);
+  }
+}
+
+.feedback-info {
+  width: 840px;
+  margin-top: 30px;
+}
+.title-info {
+  margin-bottom: 20px;
+  border-bottom-style: solid;
+  border-width: 0.5px;
+
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    padding-top: 0.3em;
+  }
+}

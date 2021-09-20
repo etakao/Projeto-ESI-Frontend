@@ -7,13 +7,15 @@ import { FiEdit, FiEye, FiMoreHorizontal } from 'react-icons/fi';
 import { useUser } from '../../contexts/User';
 
 import './styles.scss';
+import { forms } from '../../db';
 
-export function StudentActions({ student, thisEvaluation }) {
+export function StudentActions({ studentEvaluation, student }) {
   const [isVisible, setIsVisible] = useState(false);
-  const isEvaluated = thisEvaluation.status === "Avaliado" ? true : false;
+  const isEvaluated = studentEvaluation.situation === "Avaliado" ? true : false;
   const [opinion, setOpinion] = useState('');
   const [evaluation, setEvaluation] = useState('');
   const { name } = student;
+
   const { user } = useUser();
 
   const history = useHistory();
@@ -21,24 +23,23 @@ export function StudentActions({ student, thisEvaluation }) {
   useEffect(() => {
     switch (user.level) {
       case 1:
-        setOpinion(thisEvaluation.parecer_orientador);
-        setEvaluation(thisEvaluation.avaliacao_orientador);
+        setOpinion(studentEvaluation.parecer_orientador);
+        setEvaluation(studentEvaluation.avaliacao_orientador);
         break;
       case 2:
-        setOpinion(thisEvaluation.parecer_ccp);
-        setEvaluation(thisEvaluation.avaliacao_ccp);
+        setOpinion(studentEvaluation.parecer_ccp);
+        setEvaluation(studentEvaluation.avaliacao_ccp);
         break;
       default:
         break;
     }
-  }, [user, thisEvaluation])
+  }, [user, studentEvaluation])
 
   function viewReport() {
     history.push({
-      pathname: `/dashboard/students/${student.numero_usp}/info`,
+      pathname: `/dashboard/students/${student.id}/info`,
       state: {
-        student: student,
-        evaluationId: thisEvaluation.id
+        evaluationId: studentEvaluation.id
       }
     });
   }

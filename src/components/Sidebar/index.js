@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Layout } from 'antd';
-import { FiHome, FiUsers, FiMenu, FiInfo, FiChevronsLeft, FiUserPlus, FiBell } from 'react-icons/fi';
+
+import { FiHome, FiUser, FiUsers, FiMenu, FiInfo, FiChevronsLeft, FiUserPlus, FiBell } from 'react-icons/fi';
 import { useUser } from '../../contexts/User';
 
 import './styles.scss';
@@ -24,6 +25,18 @@ export function Sidebar({ isCollapsed, setIsCollapsed, navbarHeight }) {
       icon: <FiUsers />,
       text: 'Alunos',
       visibleTo: [1, 2]
+    },
+    {
+      path: '/dashboard/data',
+      icon: <FiUser />,
+      text: 'Meus Dados',
+      visibleTo: [0]
+    },
+    {
+      path: '/dashboard/notification',
+      icon: <FiBell />,
+      text: 'Notificações',
+      visibleTo: [0]
     },
     {
       path: '/dashboard/signup',
