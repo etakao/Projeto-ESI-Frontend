@@ -8,6 +8,7 @@ import { SeeMore } from "./SeeMore";
 import { Feedback } from "./Feedback";
 import { SignUp } from "./SignUp";
 import { Notification } from "./Notification";
+import { Evaluation } from "./Evaluation";
 
 export function DashboardRoutes() {
   return (
@@ -17,6 +18,7 @@ export function DashboardRoutes() {
       <Route exact path="/dashboard/students" component={StudentsTable} />
       <Route exact path="/dashboard/students/:id" component={History} />
       <Route path="/dashboard/students/:id/info" component={SeeMore} />
+      <Route path="/dashboard/students/:id/evaluation" component={Evaluation} />
       <Route path="/dashboard/feedback" component={Feedback} />
       <Route path="/dashboard/signup" component={SignUp} />
       <Route path="/dashboard/notification" component={Notification} />
