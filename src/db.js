@@ -55,7 +55,7 @@ export const evaluations = [
     advisorEvaluation: 'Aprovado',
     ccpOpinion: 'Parecer da CCP',
     ccpEvaluation: 'Em análise',
-    situation: 'Avaliado',
+    situation: 'Em análise',
     is_revaluation: 1,
     created_At: '20/09/2021'
   },
@@ -67,7 +67,7 @@ export const evaluations = [
     advisorEvaluation: 'Aprovado',
     ccpOpinion: 'Parecer da CCP',
     ccpEvaluation: 'Em análise',
-    situation: 'Avaliado',
+    situation: 'Em análise',
     is_revaluation: 1,
     created_At: '20/09/2021'
   },
@@ -79,7 +79,7 @@ export const evaluations = [
     advisorEvaluation: 'Aprovado',
     ccpOpinion: 'Parecer da CCP',
     ccpEvaluation: 'Em análise',
-    situation: 'Avaliado',
+    situation: 'Em análise',
     is_revaluation: 1,
     created_At: '20/09/2021'
   },
@@ -91,7 +91,7 @@ export const evaluations = [
     advisorEvaluation: 'Aprovado',
     ccpOpinion: 'Parecer da CCP',
     ccpEvaluation: 'Em análise',
-    situation: 'Avaliado',
+    situation: 'Em análise',
     is_revaluation: 1,
     created_At: '20/09/2021'
   },

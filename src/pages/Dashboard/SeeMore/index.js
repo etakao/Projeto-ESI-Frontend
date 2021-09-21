@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -11,6 +11,7 @@ export function SeeMore({ location }) {
   const [studentForm, setStudentForm] = useState(null);
   const [student, setStudent] = useState({});
 
+  const history = useHistory();
   const { id } = useParams();
 
   const tradutor = {
@@ -23,6 +24,10 @@ export function SeeMore({ location }) {
     course: "Curso"
   }
 
+  function goBack() {
+    history.goBack();
+  }
+
   useEffect(() => {
     const student_id = parseInt(id);
     setStudent(students.find(student => student.id === student_id));
@@ -31,9 +36,9 @@ export function SeeMore({ location }) {
 
   return (
     <div className="panel-info">
-      <Link to="/dashboard/students">
+      <span onClick={goBack}>
         <FiArrowLeft /> Voltar
-      </Link>
+      </span>
 
       {studentForm !== null ? (
         <div className="student-info ">

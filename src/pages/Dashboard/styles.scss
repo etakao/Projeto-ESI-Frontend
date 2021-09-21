@@ -1,5 +1,6 @@
 .dashboard-container {
   display: flex;
+  overflow: hidden;
 
   .main-container {
     flex: 1;
