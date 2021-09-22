@@ -11,31 +11,36 @@ import './styles.scss';
 export function Home() {
   const { user } = useUser();
 
-  const [evaluation, setEvaluation] = useState({});
-  const [form, setForm] = useState({});
+  const [evaluation, setEvaluation] = useState([]);
 
   useEffect(() => {
-    const loggedStudent = students.find(student => student.numero_usp === user.numero_usp);
-    const studentEvaluation = evaluations.find(evaluation => evaluation.student_id === loggedStudent.id);
-    setEvaluation(studentEvaluation);
-    setForm(forms.filter(form => form.evaluation_id === studentEvaluation.id));
+    if (user.level === 0) {
+      const loggedStudent = students.find(student => student.numero_usp === user.numero_usp);
+      const studentEvaluation = evaluations.filter(evaluation => evaluation.student_id === loggedStudent.id);
+      setEvaluation(studentEvaluation);
+    }
   }, []);
+
+  function getEvaluationsForm(attr, evaluationId) {
+    const form = forms.find(form => form.evaluation_id === evaluationId);
+    return form[attr]
+  }
 
   const formColumns = [
     {
       title: 'Data Limite',
       key: 'deadline',
       align: 'center',
-      render: () => (
-        form.deadline
+      render: (lineEvaluation) => (
+        getEvaluationsForm('deadline', lineEvaluation.id)
       )
     },
     {
       title: 'Semestre',
       key: 'semester',
       align: 'center',
-      render: () => (
-        form.semester
+      render: (lineEvaluation) => (
+        getEvaluationsForm('semester', lineEvaluation.id)
       )
     },
     {
@@ -48,13 +53,29 @@ export function Home() {
       title: 'Parecer do Orientador',
       key: 'advisorEvaluation',
       align: 'center',
-      render: (evaluation) => <Link to={`/dashboard/feedback/advisor/${evaluation.id}`}>{evaluation.advisorEvaluation}</Link>
+      render: (lineEvaluation) =>
+        <Link to={{
+          pathname: `/dashboard/feedback/${lineEvaluation.id}`,
+          state: {
+            from: 'Orientador'
+          }
+        }}>
+          {lineEvaluation.advisorEvaluation}
+        </Link>
     },
     {
       title: 'Parecer Final',
       key: 'ccpEvaluation',
       align: 'center',
-      render: (evaluation) => <Link to={`/dashboard/feedback/ccp/${evaluation.id}`}>{evaluation.ccpEvaluation}</Link>
+      render: (lineEvaluation) =>
+        <Link to={{
+          pathname: `/dashboard/feedback/${lineEvaluation.id}`,
+          state: {
+            from: 'CCP'
+          }
+        }}>
+          {lineEvaluation.ccpEvaluation}
+        </Link>
     },
   ];
 

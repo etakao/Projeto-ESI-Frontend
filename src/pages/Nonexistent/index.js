@@ -1,6 +1,5 @@
 import React from 'react';
-import { FiHome, FiLogIn, FiUsers } from 'react-icons/fi';
-import { NavLink } from 'react-router-dom';
+import { FiHome, FiLogIn } from 'react-icons/fi';
 
 import './styles.scss';
 
@@ -12,15 +11,12 @@ function Nonexistent() {
       <h2>Tente uma das opções abaixo:</h2>
 
       <ul>
-        <NavLink exact to="/login">
+        <a href="/">
           <FiLogIn /> Login
-        </NavLink>
-        <NavLink exact to="/dashboard/home">
-          <FiHome /> Home
-        </NavLink>
-        <NavLink exact to="/dashboard/students">
-          <FiUsers /> Tabela de alunos
-        </NavLink>
+        </a>
+        <a href="/dashboard">
+          <FiHome /> Sistema
+        </a>
       </ul>
     </div>
   );
