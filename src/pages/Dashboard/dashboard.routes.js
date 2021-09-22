@@ -14,14 +14,14 @@ export function DashboardRoutes() {
   return (
     <Switch>
       <Route exact path="/dashboard" component={Home} />
-      <Route exact path="/dashboard/data" component={UserData} />
       <Route exact path="/dashboard/students" component={StudentsTable} />
       <Route exact path="/dashboard/students/:id" component={History} />
-      <Route path="/dashboard/students/:id/info" component={SeeMore} />
-      <Route path="/dashboard/students/:id/evaluation" component={Evaluation} />
-      <Route path="/dashboard/feedback" component={Feedback} />
-      <Route path="/dashboard/signup" component={SignUp} />
+      <Route exact path="/dashboard/students/:id/info" component={SeeMore} />
+      <Route exact path="/dashboard/students/:id/evaluation" component={Evaluation} />
+      <Route path="/dashboard/data" component={UserData} />
+      <Route path="/dashboard/feedback/:id" component={Feedback} />
       <Route path="/dashboard/notification" component={Notification} />
+      <Route path="/dashboard/signup" component={SignUp} />
     </Switch>
   );
 }

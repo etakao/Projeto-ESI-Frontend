@@ -71,11 +71,11 @@ export function Sidebar({ isCollapsed, setIsCollapsed, navbarHeight }) {
           {sidebarMenu.map(item => {
             if ((item.visibleTo).includes(user.level)) {
               return (
-                <NavLink exact to={item.path} activeClassName="active-menu">
+                <NavLink key={item.text} exact to={item.path} activeClassName="active-menu">
                   {item.icon}
                   <h2>{item.text}</h2>
                 </NavLink>
-              )
+              );
             }
           })}
         </ul>
