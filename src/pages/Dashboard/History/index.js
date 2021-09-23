@@ -4,57 +4,83 @@ import { Link, useParams } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Table } from 'antd';
 
-import { evaluations, students } from '../../../db';
+import { evaluationsApi } from '../../../services/evaluations';
+import { studentsApi } from '../../../services/students';
 import { StudentActions } from '../../../components/StudentActions';
 
 import './styles.scss';
 
 export function History() {
+  const [student, setStudent] = useState('');
+  const [studentEvaluations, setStudentEvaluations] = useState([]);
+
   const { id } = useParams();
 
-  const [student, setStudent] = useState({});
-  const [studentEvaluations, setStudentEvaluations] = useState([]);
+  async function getStudentById(student_id) {
+    try {
+      const studentsResponse = await studentsApi.readOne(student_id);
+      if (studentsResponse.status === 200) {
+        setStudent(studentsResponse.data);
+        const studentsForms = studentsResponse.data.forms;
+
+        try {
+          const evaluationsResponse = await evaluationsApi.read();
+          if (evaluationsResponse.status === 200) {
+            setStudentEvaluations(evaluationsResponse.data.filter(evaluation => {
+              for (let index = 0; index < studentsForms.length; index++) {
+                if (evaluation.forms_id === studentsForms[index].id) return evaluation;
+              }
+            }));
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     const student_id = parseInt(id);
-    const student_evaluations = evaluations.find(evaluation => evaluation.student_id === student_id);
 
-    setStudent(students.find(student => student.id === student_id));
-    setStudentEvaluations(evaluations.filter(evaluation => evaluation.student_id === student_id));
-    console.log(student_evaluations)
+    getStudentById(student_id);
   }, [id]);
 
   const columns = [
     {
       title: 'Data',
-      dataIndex: 'created_At',
-      key: 'created_At',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
     },
     {
       title: 'Status',
-      dataIndex: 'situation',
+      dataIndex: 'status',
       key: 'status',
     },
     {
       title: 'Reavaliação',
       dataIndex: 'is_revaluation',
       key: 'revaluation',
+      render: (isReavaliation) => (
+        isReavaliation ? "Sim" : "Não"
+      )
     },
     {
       title: 'Avaliação do orientador',
-      dataIndex: 'advisorEvaluation',
-      key: 'advisorEvaluation',
+      dataIndex: 'avaliacao_orientador',
+      key: 'avaliacao_orientador',
     },
     {
       title: 'Parecer do orientador',
-      dataIndex: 'advisorOpinion',
-      key: 'advisorOpinion',
+      dataIndex: 'comentario_orientador',
+      key: 'comentario_orientador',
     },
     {
       title: 'Ações',
       key: 'action',
       render: (evaluation) => (
-        <StudentActions studentEvaluation={evaluation} student={student} />
+        <StudentActions studentEvaluation={evaluation} studentId={student.id} />
       ),
       align: 'center',
     },
@@ -68,12 +94,16 @@ export function History() {
 
       <h2>Histórico de {student.name}</h2>
 
-      <Table
-        dataSource={studentEvaluations}
-        columns={columns}
-        pagination={false}
-        className="panel-table"
-      />
+      {studentEvaluations ? (
+        <Table
+          dataSource={studentEvaluations}
+          columns={columns}
+          pagination={false}
+          className="panel-table"
+        />
+      ) : (
+        <p>Carregando...</p>
+      )}
     </div>
   );
 }

@@ -31,13 +31,15 @@ const USER_TOKEN = '@sadap/user';
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState({
-    level: 0,
-    user_type: "Aluno",
-    name: "Ademir",
-    numero_usp: 19346512,
-    // level: 1,
+    // level: 0,
+    // user_type: "Aluno",
+    name: "Admin",
+    level: 3,
+    email: 'admin@email.com'
+    // numero_usp: 19346512,
+    // level: 7,
     // user_type: "Orientador",
-    // level: 2,
+    // level: 5,
     // user_type: "CCP",
   });
 
