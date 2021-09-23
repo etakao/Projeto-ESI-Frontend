@@ -140,10 +140,10 @@ export function StudentsTable() {
     switch (user.level) {
       case 3:
         return columns;
-      case 1:
-        return columns.filter(column => column.visibleTo === "all" || column.visibleTo === "orientador");
-      case 2:
+      case 5:
         return columns.filter(column => column.visibleTo === "all" || column.visibleTo === "ccp");
+      case 7:
+        return columns.filter(column => column.visibleTo === "all" || column.visibleTo === "orientador");
       default:
         break;
     }
