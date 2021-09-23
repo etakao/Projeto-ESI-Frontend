@@ -18,31 +18,31 @@ export function Sidebar({ isCollapsed, setIsCollapsed, navbarHeight }) {
       path: '/dashboard',
       icon: <FiHome />,
       text: 'Início',
-      visibleTo: [0, 1, 2]
+      visibleTo: [3, 5, 7, 11]
     },
     {
       path: '/dashboard/students',
       icon: <FiUsers />,
       text: 'Alunos',
-      visibleTo: [1, 2]
+      visibleTo: [3, 5, 7]
     },
     {
       path: '/dashboard/data',
       icon: <FiUser />,
       text: 'Meus Dados',
-      visibleTo: [0]
+      visibleTo: [11]
     },
     {
       path: '/dashboard/notification',
       icon: <FiBell />,
       text: 'Notificações',
-      visibleTo: [0]
+      visibleTo: [11]
     },
     {
       path: '/dashboard/signup',
       icon: <FiUserPlus />,
       text: 'Cadastrar',
-      visibleTo: [2]
+      visibleTo: [3]
     },
   ]
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FiArrowLeft } from 'react-icons/fi';
 import { useHistory, useParams } from 'react-router-dom';
+
+import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.scss';
 
@@ -15,8 +16,11 @@ export function Evaluation() {
     history.goBack();
   }
 
-  function submitEvaluation() {
-    console.log();
+  function submitEvaluation(e) {
+    e.preventDefault();
+
+    const student_id = parseInt(id);
+
   }
 
   return (

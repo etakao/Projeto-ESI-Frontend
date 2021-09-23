@@ -4,16 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { Dropdown, Menu } from 'antd';
 import { FiEdit, FiEye, FiMoreHorizontal } from 'react-icons/fi';
 
-import { useUser } from '../../contexts/User';
-
-export function StudentActions({ studentEvaluation, student }) {
-  const isEvaluated = studentEvaluation.situation === "Avaliado" ? true : false;
+export function StudentActions({ studentEvaluation, studentId }) {
+  const isEvaluated = studentEvaluation.status === "Avaliado" ? true : false;
 
   const history = useHistory();
 
   function viewReport() {
     history.push({
-      pathname: `/dashboard/students/${student.id}/info`,
+      pathname: `/dashboard/students/${studentId}/info`,
       state: {
         evaluationId: studentEvaluation.id
       }
@@ -24,7 +22,7 @@ export function StudentActions({ studentEvaluation, student }) {
     if (isEvaluated) {
       console.log('Evaluated');
     } else {
-      history.push(`/dashboard/students/${student.id}/evaluation`);
+      history.push(`/dashboard/students/${studentId}/evaluation`);
     }
   }
 
