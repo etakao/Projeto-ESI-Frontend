@@ -4,7 +4,6 @@ import Dashboard from "./pages/Dashboard";
 import Forms from "./pages/Forms";
 
 import Nonexistent from "./pages/Nonexistent";
-import StudentPanel from "./pages/StudentPanel";
 import { SignIn } from "./pages/SignIn";
 export function Routes() {
   return (
@@ -14,7 +13,6 @@ export function Routes() {
         <Route path="/forms" component={Forms} />
         <Route path="/login" component={SignIn} />
         <Route component={Nonexistent} />
-        <Route path="/studentPanel" component={StudentPanel} />
       </Switch>
     </BrowserRouter>
   );

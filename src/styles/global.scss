@@ -8,13 +8,13 @@
   --text: #e1e1e6;
   --link: #78d1e1;
   --background: #191622;
-  --light-background: #3E3268;
+  --light-background: #3e3268;
 }
 
 body {
   background: var(--background);
   color: var(--text);
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 body,
