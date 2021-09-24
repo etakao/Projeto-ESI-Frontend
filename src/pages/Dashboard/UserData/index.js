@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { useUser } from '../../../contexts/User';
-import { students } from '../../../db';
+import api from '../../../services/api';
 
 import './styles.scss';
 
 export function UserData() {
-  const [student, setStudent] = useState({});
+  const [advisor, setAdvisor] = useState('');
 
   const { user } = useUser();
 
-  // const tradutor = {
-  //   name: "Nome",
-  //   advisor: "Nome do orientador",
-  //   ra: "Número USP",
-  //   curriculumLattes: "Link currículo Lattes"
-  // }
-
-  function getStudentInfo(numero_usp) {
-    setStudent(students.find(student => student.numero_usp === numero_usp));
-  }
-
   useEffect(() => {
-    const numero_usp = parseInt(user.numero_usp);
-    getStudentInfo(numero_usp);
-  }, [user.numero_usp]);
+    async function getAdvisorName() {
+      let res = await api.get(`/teacher/${user.teacherId}`)
+      setAdvisor(res.data.name)
+      return
+    }
+    getAdvisorName()
+  }, [user.teacherId]);
 
   return (
     <div className="panel-info">
       <div className="student-info ">
         <div className="title-info">
-          <h2>Dados de {student.name}</h2>
+          <h2>Dados de {user.name}</h2>
         </div>
         {/* {Object.entries(student).forEach((keys) => (
           <div>
@@ -39,15 +32,13 @@ export function UserData() {
           </div>
         ))} */}
         <h3>Nome</h3>
-        <p>{student.name}</p>
+        <p>{user.name}</p>
         <h3>Nome do orientador</h3>
-        <p>{student.advisor}</p>
+        <p>{advisor}</p>
         <h3>Número USP</h3>
-        <p>{student.ra}</p>
+        <p>{user.usp_number}</p>
         <h3>Curriculum Lates</h3>
-        <p>{student.lattes}</p>
-        <h3>Curso</h3>
-        <p>{student.course}</p>
+        <p>{user.lattes}</p>
       </div>
     </div>
   )
