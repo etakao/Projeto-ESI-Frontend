@@ -1,5 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import api from '../../services/api';
+import { useHistory } from "react-router-dom";
+import { message } from 'antd';
 
 import './styles.scss';
 import Section from '../../components/Section';
@@ -11,9 +13,8 @@ const { Option } = Select;
 
 export default function Forms() {
   const { user } = useUser();
-  
+  const history = useHistory();
   const [student_id, setUserId] = useState('')
-
   const [nome_orientador, setName] = useState('')
   const [link_curriculo, setCurriculum] = useState('')
   const [data_latte, setDate] = useState('')
@@ -62,6 +63,8 @@ export default function Forms() {
       exame_qualificacao, congresso_exterior, congresso_interior, estagio_pesquisa,
       artigos_aceitos, artigos_preparacao, artigos_aguardando, student_id
     });
+    history.push("/dashboard");
+    message.success("Enviado!");
   }
 
   return (
@@ -74,25 +77,25 @@ export default function Forms() {
         <form onSubmit={handleSubmit}>
           <Section>Dados gerais</Section>
           <span className="question">Nome do orientador</span>
-          <input type="text" name="advisorName" onChange={e => setName(e.target.value)} />
+          <input type="text" name="advisorName" onChange={e => setName(e.target.value)} required={true} />
           <span className="question">Link para o curriculum lattes</span>
-          <input type="text" name="curriculum" onChange={e => setCurriculum(e.target.value)} />
+          <input type="text" name="curriculum" onChange={e => setCurriculum(e.target.value)} required={true} />
           <span className="question">Data da última atualização do lattes</span>
-          <input type="date" name="date" onChange={e => setDate(e.target.value)} />
+          <input type="date" name="date" onChange={e => setDate(e.target.value)} required={true} />
           <span className="question">Qual foi o resultado da avaliação do seu último relatório?</span>
-          <Select name="result" onChange={value => setResult(value)}>
+          <Select name="result" onChange={value => setResult(value)}required={true}>
             <Option value={1}>Aprovado</Option>
             <Option value={2}>Aprovado com ressalvas</Option>
             <Option value={3}>Insatisfatório</Option>
             <Option value={4}>Não se aplica (é o meu primeiro relatório)</Option>
           </Select>
           <span className="question">Qual é o seu curso?</span>
-          <Select name="course" onChange={value => setCourse(value)} >
+          <Select name="course" onChange={value => setCourse(value)} required={true}>
             <Option value={1}>Mestrado</Option>
             <Option value={2}>Doutorado</Option>
           </Select>
           <span className="question">Este relatório é referente a que semestre do seu curso? (último semestre concluído)</span>
-          <Select name="semester" onChange={value => setSemester(value)} >
+          <Select name="semester" onChange={value => setSemester(value)} required={true}>
             <Option value={1}>1° semestre do curso</Option>
             <Option value={2}>2° semestre do curso</Option>
             <Option value={3}>3° semestre do curso</Option>
@@ -105,16 +108,16 @@ export default function Forms() {
 
           <Section>Atividades didáticas</Section>
           <span className="question">Em quantas disciplinas obrigatórias você já obteve aprovação?</span>
-          <input type="number" name="obgApproved" onChange={e => setObgApproved(e.target.value)} ></input>
+          <input type="number" name="obgApproved" onChange={e => setObgApproved(e.target.value)} required={true}></input>
           <span className="question">Em quantas disciplinas optativas você já obteve aprovação?</span>
-          <input type="number" name="optApproved" onChange={e => setOptApproved(e.target.value)} ></input>
+          <input type="number" name="optApproved" onChange={e => setOptApproved(e.target.value)} required={true} ></input>
           <span className="question">Todos os conceitos em disciplinas cursadas no último semestre já foram divulgados? Caso não, espere até 2 dias antes da data máxima definida no site do PPgSI para enviar o seu relatório.</span>
-          <Select name="concepts" onChange={value => setConcepts(value)} >
+          <Select name="concepts" onChange={value => setConcepts(value)} required={true} >
             <Option value="1">Sim</Option>
             <Option value="0">Não</Option>
           </Select>
           <span className="question">Em quantas disciplinas você foi reprovado desde o inicio do mestrado/doutorado?</span>
-          <Select name="allUnapproved" onChange={value => setAllUnapproved(value)} >
+          <Select name="allUnapproved" onChange={value => setAllUnapproved(value)}  required={true}>
             <Option value="0">0</Option>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
@@ -127,40 +130,40 @@ export default function Forms() {
             <Option value="3">Já terminei as disciplinas</Option>
           </Select>
           <span className="question">Você já foi aprovado no exame de proficiência em idiomas?</span>
-          <Select name="proLang" onChange={value => setProLang(value)} >
+          <Select name="proLang" onChange={value => setProLang(value)} required={true} >
             <Option value="1">Sim</Option>
             <Option value="0">Não</Option>
           </Select>
 
           <Section>Atividades de pesquisa</Section>
           <span className="question">Você já realizou o exame de qualificação?</span>
-          <Select name="qualification" onChange={value => setQualification(value)} >
+          <Select name="qualification" onChange={value => setQualification(value)} required={true}>
             <Option value={1}>Sim. Fui aprovado</Option>
             <Option value={2}>Não. Fui reprovado</Option>
             <Option value={3}>Não</Option>
           </Select>
           <span className="question">Se não qualificou, quanto tempo falta para o limite máximo de qualificação?</span>
-          <Select name="maxLimitQualification" onChange={value => setMaxLimitQualification(value)} >
+          <Select name="maxLimitQualification" onChange={value => setMaxLimitQualification(value)} required={true} >
             <Option value={1}>Menos de 3 meses</Option>
             <Option value={2}>Entre 3 e 6 meses</Option>
             <Option value={3}>Mais de 6 meses</Option>
           </Select>
           <span className="question">Quantos artigos referentes a sua pesquisa de mestrado/doutorado você te aceitos ou publicados? (Obs: Você deve inserir os artigos publicados no seu currículo Lattes)</span>
-          <Select name="articlesAccept" onChange={value => setArticlesAccept(value)} >
+          <Select name="articlesAccept" onChange={value => setArticlesAccept(value)} required={true}>
             <Option value="0">0</Option>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
             <Option value="3">Mais de 2</Option>
           </Select>
           <span className="question">Quantos artigos você submeteu e ainda estão aguardando resposta?</span>
-          <Select name="articlesWaiting" onChange={value => setArticlesWaiting(value)} >
+          <Select name="articlesWaiting" onChange={value => setArticlesWaiting(value)} required={true}>
             <Option value="0">0</Option>
             <Option value="1">1</Option>
             <Option value="2">2</Option>
             <Option value="3">Mais de 2</Option>
           </Select>
           <span className="question">Você possui artigo em preparação para submissão? Qual estágio dele?</span>
-          <Select name="articlesSubmit" onChange={value => setArticlesSubmit(value)} >
+          <Select name="articlesSubmit" onChange={value => setArticlesSubmit(value)} required={true}>
             <Option value={1}>Não possuo</Option>
             <Option value={2}>Experimentos em elaboração</Option>
             <Option value={3}>Aguardando coleta de dados</Option>
@@ -169,15 +172,15 @@ export default function Forms() {
             <Option value={6}>Preparando resposta para revisores</Option>
           </Select>
           <span className="question">Qual o estágio atual de sua pesquisa? Apresente toda e qualquer atividade que já tenha sido realizada no contexto de seu projeto de pesquisa (mesmo que ainda incompleta). Faça uma descrição detalhada</span>
-          <textarea rows="5" cols="50" name="stageResearch" onChange={e => setStageResearch(e.target.value)} />
+          <textarea rows="5" cols="50" name="stageResearch" onChange={e => setStageResearch(e.target.value)} required={true}/>
           <span className="question">Você participou de algum congressos no país? Se sim, indicar local, se houve apresentação de trabalho e se o congresso é ou não internacional.</span>
-          <textarea rows="5" cols="50" name="congressInCountry" onChange={e => setCongressInCountry(e.target.value)} />
+          <textarea rows="5" cols="50" name="congressInCountry" onChange={e => setCongressInCountry(e.target.value)} required={true}/>
           <span className="question">Você participou de algum congresso no exterior? Se sim, indicar local e se houve apresentação de trabalho.</span>
-          <textarea rows="5" cols="50" name="congressGringo" onChange={e => setCongressGringo(e.target.value)} />
+          <textarea rows="5" cols="50" name="congressGringo" onChange={e => setCongressGringo(e.target.value)} required={true}/>
           <span className="question">Você realizou algum estágio de pesquisa ou visita de pesquisa no exterior (incluindo sanduíche)? Se sim, indique o nome da universidade e o período.</span>
-          <textarea rows="5" cols="50" name="internshipAbroad" onChange={e => setInternshipAbroad(e.target.value)} />
+          <textarea rows="5" cols="50" name="internshipAbroad" onChange={e => setInternshipAbroad(e.target.value)}required={true} />
           <span className="question">Você tem algo a mais a declarar para a CCP - PPgSI?</span>
-          <textarea rows="5" cols="50" name="declarationOfIndependence" onChange={e => setDeclarationOfIndependence(e.target.value)} />
+          <textarea rows="5" cols="50" name="declarationOfIndependence" onChange={e => setDeclarationOfIndependence(e.target.value)} required={true} />
           {revalue === true &&
             <>
               <div className="revalue" >
