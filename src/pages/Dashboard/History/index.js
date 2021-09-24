@@ -80,7 +80,7 @@ export function History() {
       title: 'Ações',
       key: 'action',
       render: (evaluation) => (
-        <StudentActions studentEvaluation={evaluation} studentId={student.id} />
+        <StudentActions evaluationId={evaluation.id} studentId={student.id} />
       ),
       align: 'center',
     },

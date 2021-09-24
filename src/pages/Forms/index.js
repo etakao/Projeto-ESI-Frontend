@@ -1,47 +1,67 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
+import api from '../../services/api';
 
 import './styles.scss';
 import Section from '../../components/Section';
 import { Select } from 'antd';
+import { useUser } from '../../contexts/User';
 const { Option } = Select;
 
 
-export default function Forms() {
-  const [revalue, setRevalue] = useState(true);
 
-  const [name, setName] = useState('')
-  const [curriculum, setCurriculum] = useState('')
-  const [date, setDate] = useState('')
-  const [result, setResult] = useState('')
-  const [course, setCourse] = useState('')
-  const [semester, setSemester] = useState('')
-  const [obgApproved, setObgApproved] = useState('')
-  const [optApproved, setOptApproved] = useState('')
-  const [concepts, setConcepts] = useState('')
-  const [allUnapproved, setAllUnapproved] = useState('')
-  const [lastUnapproved, setLastUnapproved] = useState('')
-  const [proLang, setProLang] = useState('')
-  const [qualification, setQualification] = useState('')
-  const [maxLimitQualification, setMaxLimitQualification] = useState('')
-  const [articlesAccept, setArticlesAccept] = useState('')
-  const [articlesWaiting, setArticlesWaiting] = useState('')
-  const [articlesSubmit, setArticlesSubmit] = useState('')
-  const [stageResearch, setStageResearch] = useState('')
-  const [congressInCountry, setCongressInCountry] = useState('')
-  const [congressGringo, setCongressGringo] = useState('')
-  const [internshipAbroad, setInternshipAbroad] = useState('')
-  const [declarationOfIndependence, setDeclarationOfIndependence] = useState('')
-  const [finalComments, setFinalComments] = useState('')
+export default function Forms() {
+  const { user } = useUser();
+  
+  const [student_id, setUserId] = useState('')
+
+  const [nome_orientador, setName] = useState('')
+  const [link_curriculo, setCurriculum] = useState('')
+  const [data_latte, setDate] = useState('')
+  const [ultimo_relatorio, setResult] = useState('')
+  const [qual_curso, setCourse] = useState('')
+  const [ultimo_semestre, setSemester] = useState('')
+  const [disciplinas_obrigatorias, setObgApproved] = useState('')
+  const [disciplinas_optativas, setOptApproved] = useState('')
+  const [conceitos_disciplinas, setConcepts] = useState('')
+  const [disciplinas_reprovadas_mestrado, setAllUnapproved] = useState('')
+  const [disciplinas_reprovadas_curso, setLastUnapproved] = useState('')
+  const [exame_idiomas, setProLang] = useState('')
+  const [exame_qualificacao, setQualification] = useState('')
+  const [limite_qualificacao, setMaxLimitQualification] = useState('')
+  const [artigos_aceitos, setArticlesAccept] = useState('')
+  const [artigos_aguardando, setArticlesWaiting] = useState('')
+  const [artigos_preparacao, setArticlesSubmit] = useState('')
+  const [estagio_pesquisa, setStageResearch] = useState('')
+  const [congresso_interior, setCongressInCountry] = useState('')
+  const [congresso_exterior, setCongressGringo] = useState('')
+  const [estagio_pesquisa_exterior, setInternshipAbroad] = useState('')
+  const [declarar_ccp, setDeclarationOfIndependence] = useState('')
+  const [comentarios_orientando, setFinalComments] = useState('')
+
+  const [revalue, setRevalue] =  useState(Boolean);
+
+  useEffect(() => {
+    async function isRevaluation() {
+      let res = await api.get(`/evaluation/1`) //TODO fazer o indice ficar dinamico
+    
+      if (res.data.is_reavaliation === 1) {
+        setRevalue(true)
+      } else setRevalue(false)
+    }
+    isRevaluation()
+    setUserId(user.id)
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(JSON.stringify({
-      name, curriculum, date, result, course, semester, obgApproved,
-      optApproved, concepts, allUnapproved, lastUnapproved, proLang,
-      qualification, maxLimitQualification, articlesAccept, articlesWaiting,
-      articlesSubmit, stageResearch, congressInCountry, congressGringo,
-      internshipAbroad, declarationOfIndependence, finalComments
-    }));
+    api.post(`forms`, {
+      qual_curso, nome_orientador, link_curriculo, data_latte, ultimo_relatorio,
+      ultimo_semestre, disciplinas_obrigatorias, disciplinas_optativas, conceitos_disciplinas,
+      disciplinas_reprovadas_mestrado, comentarios_orientando, disciplinas_reprovadas_curso,
+      declarar_ccp, exame_idiomas, estagio_pesquisa_exterior, limite_qualificacao,
+      exame_qualificacao, congresso_exterior, congresso_interior, estagio_pesquisa,
+      artigos_aceitos, artigos_preparacao, artigos_aguardando, student_id
+    });
   }
 
   return (

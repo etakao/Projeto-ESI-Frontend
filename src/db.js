@@ -11,7 +11,7 @@ export const students = [
   {
     id: 2,
     name: 'Ademir',
-    numero_usp: 19346512,
+    numero_usp: 252541765,
     course: 'Doutorado',
     email: 'ademir@usp.br',
     advisor: 'Marcelo',

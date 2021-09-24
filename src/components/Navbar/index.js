@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FiLogOut, FiUser } from 'react-icons/fi';
 
 

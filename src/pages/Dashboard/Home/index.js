@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Table } from 'antd';
 
-import { evaluations, forms, students } from '../../../db';
+import { evaluations, forms } from '../../../db';
 import { useUser } from '../../../contexts/User';
 
 import './styles.scss';
@@ -14,12 +14,11 @@ export function Home() {
   const [evaluation, setEvaluation] = useState([]);
 
   useEffect(() => {
-    if (user.level === 0) {
-      const loggedStudent = students.find(student => student.numero_usp === user.numero_usp);
-      const studentEvaluation = evaluations.filter(evaluation => evaluation.student_id === loggedStudent.id);
+    if (user.level === 11) {
+      const studentEvaluation = evaluations.filter(evaluation => evaluation.student_id === user.id);
       setEvaluation(studentEvaluation);
     }
-  }, []);
+  }, [user.id, user.level]);
 
   function getEvaluationsForm(attr, evaluationId) {
     const form = forms.find(form => form.evaluation_id === evaluationId);
@@ -84,11 +83,11 @@ export function Home() {
       <h2>
         Bem vindx, {user.name}
       </h2>
-      {user.level === 0 && (
+      {user.level === 11 && (
         <>
-          <div className="situation">
-            <h2>Situação atual: {evaluation.situation}</h2>
-          </div>
+          {/* <div className="situation">
+            <h2>Situação atual: {evaluation[0].situation}</h2>
+          </div> */}
           <Table
             dataSource={evaluation}
             columns={formColumns}
