@@ -29,8 +29,9 @@ export function StudentsTable() {
         if (evaluation.forms_id === forms[index].id)
           return evaluation;
       }
+      
     })
-    return studentsEvaluations.status;
+    return console.log(studentsEvaluations);
   }
 
   function getTeachersName(teacherId) {

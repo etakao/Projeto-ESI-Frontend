@@ -32,7 +32,7 @@ export function SignUp() {
       inputId: "name",
       inputType: "text",
       inputOnChange: e => setName(e.target.value),
-      visibleTo: [0, 1, 2]
+      visibleTo: [11, 7, 5]
     },
     {
       type: 'input',
@@ -41,7 +41,7 @@ export function SignUp() {
       inputId: "uspNumber",
       inputType: "text",
       inputOnChange: e => setUspNumber(e.target.value),
-      visibleTo: [2]
+      visibleTo: [5,3]
     },
     {
       type: 'input',
@@ -50,7 +50,7 @@ export function SignUp() {
       inputId: "lattes",
       inputType: "text",
       inputOnChange: e => setLattes(e.target.value),
-      visibleTo: [2]
+      visibleTo: [5,3]
     },
     {
       type: 'select',
@@ -60,7 +60,7 @@ export function SignUp() {
       selectData: teachers,
       selectValue: teacher_id,
       selectOnChange: e => setAdvisor(e.target.value),
-      visibleTo: [2]
+      visibleTo: [5,3]
     },
     {
       type: 'select',
@@ -70,7 +70,7 @@ export function SignUp() {
       selectData: ccps,
       selectValue: ccp_id,
       selectOnChange: e => setCcp(e.target.value),
-      visibleTo: [1]
+      visibleTo: [7]
     },
     {
       type: 'input',
@@ -79,7 +79,7 @@ export function SignUp() {
       inputId: "email",
       inputType: "email",
       inputOnChange: e => setEmail(e.target.value),
-      visibleTo: [0, 1, 2]
+      visibleTo: [11, 7, 5]
     },
     {
       type: 'input',
@@ -88,7 +88,7 @@ export function SignUp() {
       inputId: "password",
       inputType: "password",
       inputOnChange: e => setPassword(e.target.value),
-      visibleTo: [0, 1, 2]
+      visibleTo: [11, 7, 5]
     },
   ];
 
@@ -102,7 +102,7 @@ export function SignUp() {
     });
 
     switch (activeSignup) {
-      case 0:
+      case 11:
         try {
           const response = await ccpsApi.create({
             name,
@@ -120,7 +120,7 @@ export function SignUp() {
           message.error("Erro ao cadastrar CCP, tente novamente...");
         }
         break;
-      case 1:
+      case 7:
         try {
           const response = await teachersApi.create({
             name,
@@ -138,7 +138,7 @@ export function SignUp() {
           message.error("Erro ao cadastrar orientador, tente novamente...");
         }
         break;
-      case 2:
+      case 5:
         try {
           const response = await studentsApi.create({
             name,
@@ -168,20 +168,20 @@ export function SignUp() {
       <h2>Cadastro de usuário</h2>
       <div className="signup-tabs">
         <span
-          className={activeSignup === 0 ? "active-tab" : "inactive-tab"}
-          onClick={() => setActiveSignup(0)}
+          className={activeSignup === 11 ? "active-tab" : "inactive-tab"}
+          onClick={() => setActiveSignup(11)}
         >
           CCP
         </span>
         <span
-          className={activeSignup === 1 ? "active-tab" : "inactive-tab"}
-          onClick={() => setActiveSignup(1)}
+          className={activeSignup === 7 ? "active-tab" : "inactive-tab"}
+          onClick={() => setActiveSignup(7)}
         >
           Orientador
         </span>
         <span
-          className={activeSignup === 2 ? "active-tab" : "inactive-tab"}
-          onClick={() => setActiveSignup(2)}
+          className={activeSignup === 5 ? "active-tab" : "inactive-tab"}
+          onClick={() => setActiveSignup(5)}
         >
           Aluno
         </span>
