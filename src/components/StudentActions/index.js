@@ -4,26 +4,29 @@ import { useHistory } from 'react-router-dom';
 import { Dropdown, Menu } from 'antd';
 import { FiEdit, FiEye, FiMoreHorizontal } from 'react-icons/fi';
 
-export function StudentActions({ studentEvaluation, studentId }) {
-  const isEvaluated = studentEvaluation.status === "Avaliado" ? true : false;
+import { useUser } from '../../contexts/User';
 
+export function StudentActions({ evaluationId, studentId }) {
+  const { user } = useUser();
   const history = useHistory();
 
   function viewReport() {
     history.push({
       pathname: `/dashboard/students/${studentId}/info`,
       state: {
-        evaluationId: studentEvaluation.id
+        evaluationId: evaluationId
       }
     });
   }
 
   function handleEvaluation() {
-    if (isEvaluated) {
-      console.log('Evaluated');
-    } else {
-      history.push(`/dashboard/students/${studentId}/evaluation`);
-    }
+    history.push({
+      pathname: `/dashboard/students/${studentId}/evaluation`,
+      state: {
+        evaluationId: evaluationId,
+        studentId: studentId
+      }
+    });
   }
 
   const menu = (
@@ -31,10 +34,14 @@ export function StudentActions({ studentEvaluation, studentId }) {
       <Menu.Item key="0" onClick={viewReport}>
         <FiEye /> Ver +
       </Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="1" onClick={handleEvaluation}>
-        <FiEdit /> Avaliação
-      </Menu.Item>
+      {[5, 7].includes(user.level) && (
+        <>
+          <Menu.Divider />
+          <Menu.Item key="1" onClick={handleEvaluation}>
+            <FiEdit /> Avaliação
+          </Menu.Item>
+        </>
+      )}
     </Menu>
   );
 

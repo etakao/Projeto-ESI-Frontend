@@ -27,6 +27,6 @@ export function CcpsContextProvider({ children }) {
   );
 }
 
-export function useCcp() {
+export function useCcps() {
   return useContext(CcpsContext);
 }
