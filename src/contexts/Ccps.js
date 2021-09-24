@@ -1,13 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { ccpsApi } from '../services/ccps';
+import { useUser } from './User';
 
 const CcpsContext = createContext();
 
 export function CcpsContextProvider({ children }) {
-  const [ccps, setCcps] = useState('');
+  const [ccps, setCcps] = useState([]);
 
-  useEffect(async () => {
+  const { user } = useUser();
+
+  async function getCcps() {
     try {
       const response = await ccpsApi.read();
       if (response.status === 200) {
@@ -16,7 +19,11 @@ export function CcpsContextProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }
+
+  useEffect(() => {
+    getCcps();
+  }, [user]);
 
   return (
     <CcpsContext.Provider value={{
