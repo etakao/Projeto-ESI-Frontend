@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Table } from 'antd';
 import { FiClipboard } from 'react-icons/fi';
 
-import { evaluationsApi } from '../../../services/evaluations';
-import { studentsApi } from '../../../services/students';
-import { teachersApi } from '../../../services/teachers';
 import { useUser } from '../../../contexts/User';
 import { useStudents } from '../../../contexts/Students';
 import { useTeachers } from '../../../contexts/Teachers';
@@ -15,10 +12,6 @@ import { useEvaluations } from '../../../contexts/Evaluations';
 import './styles.scss';
 
 export function StudentsTable() {
-  // const [students, setStudents] = useState([]);
-  // const [evaluations, setEvaluations] = useState([]);
-  // const [teachers, setTeachers] = useState([]);
-
   const { user } = useUser();
   const { students } = useStudents();
   const { teachers } = useTeachers();
@@ -43,47 +36,6 @@ export function StudentsTable() {
     const studentsTeacher = teachers.find(teacher => teacher.id === teacherId);
     return studentsTeacher.name;
   }
-
-  // async function getEvaluations() {
-  //   try {
-  //     const response = await evaluationsApi.read();
-  //     if (response.status === 200) {
-  //       setEvaluations(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // async function getStudents() {
-  //   try {
-  //     const response = await studentsApi.read();
-  //     if (response.status === 200) {
-  //       if (user.level === 7) {
-  //         setStudents(response.data.filter(student => student.teacher_id === user.id));
-  //       } else setStudents(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // async function getTeachers() {
-  //   try {
-  //     const response = await teachersApi.read();
-  //     if (response.status === 200) {
-  //       setTeachers(response.data)
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getStudents();
-  //   getEvaluations();
-  //   getTeachers();
-  // }, []);
 
   const columns = [
     {
