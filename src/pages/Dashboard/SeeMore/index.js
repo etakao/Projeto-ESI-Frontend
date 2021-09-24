@@ -15,13 +15,33 @@ export function SeeMore({ location }) {
   const { id } = useParams();
 
   const tradutor = {
-    id: "Identifição",
+    student_id: "Identifição",
     name: "Nome",
     email: "Email",
-    advisor: "Nome do orientador",
+    nome_orientador: "Nome do orientador",
     numero_usp: "Número USP",
-    lattes: "Link currículo Lattes",
-    course: "Curso"
+    link_curriculo: "Link currículo Lattes",
+    data_latte:"Data da última atualização do lattes ",
+    qual_course: "Curso",
+    ultimo_relatorio:"O resultado do último relatório",
+    ultimo_semestre: "É referente ao ultimo semestre?",
+    disciplinas_obrigatorias: "Aprovação em diciplinas obrigatórias",
+    disciplinas_optativas: "Aprovação em diciplinas optativas",
+    conceitos_diciplinas: "Todos os conceitos em disciplinas cursadas no último semestre já foram divulgados?",
+    disciplinas_reprovadas_mestrado: "Total de disciplinas reprovadas",
+    disciplinas_reprovadas_curso:"Disciplinas reprovadas no último semestre",
+    exame_idiomas:"Foi aprovado no exame de proficiencia em idiomas",
+    exame_qualificacao:"Realizou o exame de Qualificação",
+    limite_qualificacao:"Tempo do limite maximo de qualificação (Caso não qualificado)",
+    artigos_aceitos: "Artigos aceitos ",
+    artigos_aguardando: "Artigos aguardando Resposta",
+    artigos_preparacao: "Artigos em preparação para submeter ",
+    estagio_pesquisa:"Estágio atual da pesquisa",
+    estagio_pesquisa_exterior:"Possui pesquisa no exterior?",
+    congresso_exterior:" Participou congresso exterior?",
+    congresso_interior:"realizou algum estágio de pesquisa ou visita de pesquisa no exterior?",
+    declarar_ccp:"declaração para ccp",
+    comentarios_orientando:"Comentários finais do orientando"
   }
 
   function goBack() {
