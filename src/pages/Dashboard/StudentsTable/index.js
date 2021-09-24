@@ -8,34 +8,20 @@ import { useUser } from '../../../contexts/User';
 import { useStudents } from '../../../contexts/Students';
 import { useTeachers } from '../../../contexts/Teachers';
 import { useEvaluations } from '../../../contexts/Evaluations';
+import { useForms } from '../../../contexts/Forms';
 
 import './styles.scss';
 
 export function StudentsTable() {
-
   const { user } = useUser();
   const { students } = useStudents();
   const { teachers } = useTeachers();
   const { evaluations } = useEvaluations();
+
   const history = useHistory();
 
   function seeHistory(id) {
     history.push(`/dashboard/students/${id}`);
-  }
-
-  function getLastEvaluationStatus(forms) {
-    const studentsEvaluations = evaluations.find(evaluation => {
-      for (let index = 0; index < forms.length; index++) {
-        if (evaluation.forms_id === forms[index].id)
-          return evaluation;
-      }
-    })
-    return studentsEvaluations.status;
-  }
-
-  function getTeachersName(teacherId) {
-    const studentsTeacher = teachers.find(teacher => teacher.id === teacherId);
-    return studentsTeacher.name;
   }
 
   const columns = [
@@ -54,26 +40,15 @@ export function StudentsTable() {
     {
       title: 'Orientador',
       key: 'advisor',
-      render: (student) => (
-        teachers ? (
-          getTeachersName(student.teacher_id)
+      dataIndex: 'teacher_id',
+      render: (teacherId) => (
+        teachers.length !== 0 ? (
+          teachers.find(teacher => teacher.id === teacherId).name
         ) : (
           "Carregando..."
         )
       ),
       visibleTo: 'ccp'
-    },
-    {
-      title: 'Status',
-      key: 'status',
-      render: (student) => (
-        evaluations ? (
-          getLastEvaluationStatus(student.forms)
-        ) : (
-          "Carregando..."
-        )
-      ),
-      visibleTo: 'all'
     },
     {
       title: 'Histórico',

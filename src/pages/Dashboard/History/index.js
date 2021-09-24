@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 import { Table } from 'antd';
+import moment from 'moment';
 
 import { evaluationsApi } from '../../../services/evaluations';
 import { studentsApi } from '../../../services/students';
@@ -52,6 +53,7 @@ export function History() {
       title: 'Data',
       dataIndex: 'createdAt',
       key: 'createdAt',
+      render: (date) => moment(date).format('DD/MM/YYYY')
     },
     {
       title: 'Status',
