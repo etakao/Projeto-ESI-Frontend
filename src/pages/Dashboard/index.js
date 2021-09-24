@@ -7,6 +7,7 @@ import { TeachersContextProvider } from '../../contexts/Teachers';
 import { CcpsContextProvider } from '../../contexts/Ccps';
 import { StudentsContextProvider } from '../../contexts/Students';
 import { UserContextProvider } from '../../contexts/User';
+import { FormsContextProvider } from '../../contexts/Forms';
 import { DashboardRoutes } from './dashboard.routes';
 
 import './styles.scss';
@@ -20,24 +21,26 @@ function Dashboard() {
       <CcpsContextProvider>
         <TeachersContextProvider>
           <StudentsContextProvider>
-            <EvaluationsContextProvider>
-              <div className="dashboard-container">
-                <Sidebar
-                  isCollapsed={collapsed}
-                  setIsCollapsed={setCollapsed}
-                  navbarHeight={navbarHeight}
-                />
-                <div className="main-container">
-                  <Navbar
+            <FormsContextProvider>
+              <EvaluationsContextProvider>
+                <div className="dashboard-container">
+                  <Sidebar
                     isCollapsed={collapsed}
-                    setNavbarHeight={setNavbarHeight}
+                    setIsCollapsed={setCollapsed}
+                    navbarHeight={navbarHeight}
                   />
-                  <div className="content-container" style={{ height: `calc(100vh - ${navbarHeight}px)` }}>
-                    <DashboardRoutes />
+                  <div className="main-container">
+                    <Navbar
+                      isCollapsed={collapsed}
+                      setNavbarHeight={setNavbarHeight}
+                    />
+                    <div className="content-container" style={{ height: `calc(100vh - ${navbarHeight}px)` }}>
+                      <DashboardRoutes />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </EvaluationsContextProvider>
+              </EvaluationsContextProvider>
+            </FormsContextProvider>
           </StudentsContextProvider>
         </TeachersContextProvider>
       </CcpsContextProvider>
